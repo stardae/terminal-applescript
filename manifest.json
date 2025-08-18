@@ -1,0 +1,678 @@
+{
+  "description": "Control Terminal application through AppleScript with full class hierarchy support",
+  "dxt_version": "0.1",
+  "version": "0.1.0",
+  "long_description": "This enhanced extension allows you to control Terminal through its official AppleScript API with complete class hierarchy support. Property getters and setters now include the full object path for precise targeting. Includes static data functions for exploring the application's complete class structure and command mappings.",
+  "author": {
+    "name": "StarDAE",
+    "email": "support@stardae.com"
+  },
+  "server": {
+    "type": "node",
+    "entry_point": "server/index.js",
+    "mcp_config": {
+      "command": "node",
+      "args": [
+        "${__dirname}/server/index.js"
+      ],
+      "env": {
+        "dummy": "temp"
+      }
+    }
+  },
+  "license": "MIT",
+  "icon": "icon.png",
+  "display_name": "Terminal (AppleScript)",
+  "scripts": {
+    "start": "node server/index.js",
+    "build": "npx @anthropic-ai/dxt pack"
+  },
+  "tools": [
+    {
+      "name": "open",
+      "description": "Open a document."
+    },
+    {
+      "name": "close_for_document",
+      "description": "Close a document."
+    },
+    {
+      "name": "close_for_window",
+      "description": "Close a window."
+    },
+    {
+      "name": "save_for_document",
+      "description": "Save a document."
+    },
+    {
+      "name": "save_for_window",
+      "description": "Save a window."
+    },
+    {
+      "name": "print_file",
+      "description": "Print a document. (file input)"
+    },
+    {
+      "name": "print_for_document",
+      "description": "Print a document."
+    },
+    {
+      "name": "print_for_window",
+      "description": "Print a window."
+    },
+    {
+      "name": "quit",
+      "description": "Quit the application."
+    },
+    {
+      "name": "count_document",
+      "description": "Return the number of elements of a particular class within a document."
+    },
+    {
+      "name": "count_tab_of_window",
+      "description": "Return the number of elements of a particular class within a tab of window."
+    },
+    {
+      "name": "count_settings_set",
+      "description": "Return the number of elements of a particular class within a settings set."
+    },
+    {
+      "name": "count_window",
+      "description": "Return the number of elements of a particular class within a window."
+    },
+    {
+      "name": "delete",
+      "description": "Delete an object."
+    },
+    {
+      "name": "duplicate",
+      "description": "Copy an object."
+    },
+    {
+      "name": "exists",
+      "description": "Verify that an object exists."
+    },
+    {
+      "name": "make_document",
+      "description": "Create a new document."
+    },
+    {
+      "name": "make_tab_of_window",
+      "description": "Create a new tab of window."
+    },
+    {
+      "name": "make_settings_set",
+      "description": "Create a new settings set."
+    },
+    {
+      "name": "make_window",
+      "description": "Create a new window."
+    },
+    {
+      "name": "move",
+      "description": "Move an object to a new location."
+    },
+    {
+      "name": "get_name_of_application",
+      "description": "Get The name of the application."
+    },
+    {
+      "name": "get_frontmost_of_application",
+      "description": "Get Is this the active application?"
+    },
+    {
+      "name": "get_version_of_application",
+      "description": "Get The version number of the application."
+    },
+    {
+      "name": "get_name_of_document",
+      "description": "Get Its name. of document"
+    },
+    {
+      "name": "get_modified_of_document",
+      "description": "Get Has it been modified since the last save? of document"
+    },
+    {
+      "name": "get_file_of_document",
+      "description": "Get Its location on disk, if it has one. of document"
+    },
+    {
+      "name": "get_name_of_window",
+      "description": "Get The title of the window."
+    },
+    {
+      "name": "get_id_of_window",
+      "description": "Get The unique identifier of the window."
+    },
+    {
+      "name": "get_index_of_window",
+      "description": "Get The index of the window, ordered front to back."
+    },
+    {
+      "name": "set_index_of_window",
+      "description": "Set The index of the window, ordered front to back."
+    },
+    {
+      "name": "get_bounds_of_window",
+      "description": "Get The bounding rectangle of the window."
+    },
+    {
+      "name": "set_bounds_of_window",
+      "description": "Set The bounding rectangle of the window."
+    },
+    {
+      "name": "get_closeable_of_window",
+      "description": "Get Does the window have a close button?"
+    },
+    {
+      "name": "get_miniaturizable_of_window",
+      "description": "Get Does the window have a minimize button?"
+    },
+    {
+      "name": "get_miniaturized_of_window",
+      "description": "Get Is the window minimized right now?"
+    },
+    {
+      "name": "set_miniaturized_of_window",
+      "description": "Set Is the window minimized right now?"
+    },
+    {
+      "name": "get_resizable_of_window",
+      "description": "Get Can the window be resized?"
+    },
+    {
+      "name": "get_visible_of_window",
+      "description": "Get Is the window visible right now?"
+    },
+    {
+      "name": "set_visible_of_window",
+      "description": "Set Is the window visible right now?"
+    },
+    {
+      "name": "get_zoomable_of_window",
+      "description": "Get Does the window have a zoom button?"
+    },
+    {
+      "name": "get_zoomed_of_window",
+      "description": "Get Is the window zoomed right now?"
+    },
+    {
+      "name": "set_zoomed_of_window",
+      "description": "Set Is the window zoomed right now?"
+    },
+    {
+      "name": "get_document_of_window",
+      "description": "Get The document whose contents are displayed in the window."
+    },
+    {
+      "name": "open",
+      "description": "Open a document."
+    },
+    {
+      "name": "close_for_document",
+      "description": "Close a document."
+    },
+    {
+      "name": "close_for_window",
+      "description": "Close a window."
+    },
+    {
+      "name": "save_for_document",
+      "description": "Save a document."
+    },
+    {
+      "name": "save_for_window",
+      "description": "Save a window."
+    },
+    {
+      "name": "print_file",
+      "description": "Print a document. (file input)"
+    },
+    {
+      "name": "print_for_document",
+      "description": "Print a document."
+    },
+    {
+      "name": "print_for_window",
+      "description": "Print a window."
+    },
+    {
+      "name": "quit",
+      "description": "Quit the application."
+    },
+    {
+      "name": "count_document",
+      "description": "Return the number of elements of a particular class within a document."
+    },
+    {
+      "name": "count_tab_of_window",
+      "description": "Return the number of elements of a particular class within a tab of window."
+    },
+    {
+      "name": "count_settings_set",
+      "description": "Return the number of elements of a particular class within a settings set."
+    },
+    {
+      "name": "count_window",
+      "description": "Return the number of elements of a particular class within a window."
+    },
+    {
+      "name": "delete",
+      "description": "Delete an object."
+    },
+    {
+      "name": "duplicate",
+      "description": "Copy object(s) and put the copies at a new location."
+    },
+    {
+      "name": "exists",
+      "description": "Verify if an object exists."
+    },
+    {
+      "name": "make_document",
+      "description": "Make a new document."
+    },
+    {
+      "name": "make_tab_of_window",
+      "description": "Make a new tab of window."
+    },
+    {
+      "name": "make_settings_set",
+      "description": "Make a new settings set."
+    },
+    {
+      "name": "make_window",
+      "description": "Make a new window."
+    },
+    {
+      "name": "move",
+      "description": "Move object(s) to a new location."
+    },
+    {
+      "name": "get_frontmost_of_window",
+      "description": "Get Whether the window is currently the frontmost Terminal window."
+    },
+    {
+      "name": "set_frontmost_of_window",
+      "description": "Set Whether the window is currently the frontmost Terminal window."
+    },
+    {
+      "name": "get_position_of_window",
+      "description": "Get The position of the window, relative to the upper left corner of the screen."
+    },
+    {
+      "name": "set_position_of_window",
+      "description": "Set The position of the window, relative to the upper left corner of the screen."
+    },
+    {
+      "name": "get_origin_of_window",
+      "description": "Get The position of the window, relative to the lower left corner of the screen."
+    },
+    {
+      "name": "set_origin_of_window",
+      "description": "Set The position of the window, relative to the lower left corner of the screen."
+    },
+    {
+      "name": "get_size_of_window",
+      "description": "Get The width and height of the window"
+    },
+    {
+      "name": "set_size_of_window",
+      "description": "Set The width and height of the window"
+    },
+    {
+      "name": "get_frame_of_window",
+      "description": "Get The bounding rectangle, relative to the lower left corner of the screen. of window"
+    },
+    {
+      "name": "set_frame_of_window",
+      "description": "Set The bounding rectangle, relative to the lower left corner of the screen. of window"
+    },
+    {
+      "name": "do_script",
+      "description": "Runs a UNIX shell script or command."
+    },
+    {
+      "name": "get_url",
+      "description": "Open a command an ssh, telnet, or x-man-page URL."
+    },
+    {
+      "name": "get_default_settings_of_application",
+      "description": "Get The settings set used for new windows. of application"
+    },
+    {
+      "name": "set_default_settings_of_application",
+      "description": "Set The settings set used for new windows. of application"
+    },
+    {
+      "name": "get_startup_settings_of_application",
+      "description": "Get The settings set used for the window created on application startup."
+    },
+    {
+      "name": "set_startup_settings_of_application",
+      "description": "Set The settings set used for the window created on application startup."
+    },
+    {
+      "name": "get_id_of_settings_set",
+      "description": "Get The unique identifier of the settings set."
+    },
+    {
+      "name": "get_name_of_settings_set",
+      "description": "Get The name of the settings set."
+    },
+    {
+      "name": "set_name_of_settings_set",
+      "description": "Set The name of the settings set."
+    },
+    {
+      "name": "get_number_of_rows_of_settings_set",
+      "description": "Get The number of rows displayed in the tab. of settings set"
+    },
+    {
+      "name": "set_number_of_rows_of_settings_set",
+      "description": "Set The number of rows displayed in the tab. of settings set"
+    },
+    {
+      "name": "get_number_of_columns_of_settings_set",
+      "description": "Get The number of columns displayed in the tab. of settings set"
+    },
+    {
+      "name": "set_number_of_columns_of_settings_set",
+      "description": "Set The number of columns displayed in the tab. of settings set"
+    },
+    {
+      "name": "get_cursor_color_of_settings_set",
+      "description": "Get The cursor color for the tab. of settings set"
+    },
+    {
+      "name": "set_cursor_color_of_settings_set",
+      "description": "Set The cursor color for the tab. of settings set"
+    },
+    {
+      "name": "get_background_color_of_settings_set",
+      "description": "Get The background color for the tab. of settings set"
+    },
+    {
+      "name": "set_background_color_of_settings_set",
+      "description": "Set The background color for the tab. of settings set"
+    },
+    {
+      "name": "get_normal_text_color_of_settings_set",
+      "description": "Get The normal text color for the tab. of settings set"
+    },
+    {
+      "name": "set_normal_text_color_of_settings_set",
+      "description": "Set The normal text color for the tab. of settings set"
+    },
+    {
+      "name": "get_bold_text_color_of_settings_set",
+      "description": "Get The bold text color for the tab. of settings set"
+    },
+    {
+      "name": "set_bold_text_color_of_settings_set",
+      "description": "Set The bold text color for the tab. of settings set"
+    },
+    {
+      "name": "get_font_name_of_settings_set",
+      "description": "Get The name of the font used to display the tab’s contents. of settings set"
+    },
+    {
+      "name": "set_font_name_of_settings_set",
+      "description": "Set The name of the font used to display the tab’s contents. of settings set"
+    },
+    {
+      "name": "get_font_size_of_settings_set",
+      "description": "Get The size of the font used to display the tab’s contents. of settings set"
+    },
+    {
+      "name": "set_font_size_of_settings_set",
+      "description": "Set The size of the font used to display the tab’s contents. of settings set"
+    },
+    {
+      "name": "get_font_antialiasing_of_settings_set",
+      "description": "Get Whether the font used to display the tab’s contents is antialiased. of settings set"
+    },
+    {
+      "name": "set_font_antialiasing_of_settings_set",
+      "description": "Set Whether the font used to display the tab’s contents is antialiased. of settings set"
+    },
+    {
+      "name": "get_clean_commands_of_settings_set",
+      "description": "Get The processes which will be ignored when checking whether a tab can be closed without showing a prompt. of settings set"
+    },
+    {
+      "name": "set_clean_commands_of_settings_set",
+      "description": "Set The processes which will be ignored when checking whether a tab can be closed without showing a prompt. of settings set"
+    },
+    {
+      "name": "get_title_displays_device_name_of_settings_set",
+      "description": "Get Whether the title contains the device name. of settings set"
+    },
+    {
+      "name": "set_title_displays_device_name_of_settings_set",
+      "description": "Set Whether the title contains the device name. of settings set"
+    },
+    {
+      "name": "get_title_displays_shell_path_of_settings_set",
+      "description": "Get Whether the title contains the shell path. of settings set"
+    },
+    {
+      "name": "set_title_displays_shell_path_of_settings_set",
+      "description": "Set Whether the title contains the shell path. of settings set"
+    },
+    {
+      "name": "get_title_displays_window_size_of_settings_set",
+      "description": "Get Whether the title contains the tab’s size, in rows and columns. of settings set"
+    },
+    {
+      "name": "set_title_displays_window_size_of_settings_set",
+      "description": "Set Whether the title contains the tab’s size, in rows and columns. of settings set"
+    },
+    {
+      "name": "get_title_displays_settings_name_of_settings_set",
+      "description": "Get Whether the title contains the settings name. of settings set"
+    },
+    {
+      "name": "set_title_displays_settings_name_of_settings_set",
+      "description": "Set Whether the title contains the settings name. of settings set"
+    },
+    {
+      "name": "get_title_displays_custom_title_of_settings_set",
+      "description": "Get Whether the title contains a custom title. of settings set"
+    },
+    {
+      "name": "set_title_displays_custom_title_of_settings_set",
+      "description": "Set Whether the title contains a custom title. of settings set"
+    },
+    {
+      "name": "get_custom_title_of_settings_set",
+      "description": "Get The tab’s custom title. of settings set"
+    },
+    {
+      "name": "set_custom_title_of_settings_set",
+      "description": "Set The tab’s custom title. of settings set"
+    },
+    {
+      "name": "get_number_of_rows_of_tab_of_window",
+      "description": "Get The number of rows displayed in the tab."
+    },
+    {
+      "name": "set_number_of_rows_of_tab_of_window",
+      "description": "Set The number of rows displayed in the tab."
+    },
+    {
+      "name": "get_number_of_columns_of_tab_of_window",
+      "description": "Get The number of columns displayed in the tab."
+    },
+    {
+      "name": "set_number_of_columns_of_tab_of_window",
+      "description": "Set The number of columns displayed in the tab."
+    },
+    {
+      "name": "get_contents_of_tab_of_window",
+      "description": "Get The currently visible contents of the tab."
+    },
+    {
+      "name": "get_history_of_tab_of_window",
+      "description": "Get The contents of the entire scrolling buffer of the tab."
+    },
+    {
+      "name": "get_busy_of_tab_of_window",
+      "description": "Get Whether the tab is busy running a process."
+    },
+    {
+      "name": "get_processes_of_tab_of_window",
+      "description": "Get The processes currently running in the tab."
+    },
+    {
+      "name": "get_selected_of_tab_of_window",
+      "description": "Get Whether the tab is selected."
+    },
+    {
+      "name": "set_selected_of_tab_of_window",
+      "description": "Set Whether the tab is selected."
+    },
+    {
+      "name": "get_title_displays_custom_title_of_tab_of_window",
+      "description": "Get Whether the title contains a custom title. of tab"
+    },
+    {
+      "name": "set_title_displays_custom_title_of_tab_of_window",
+      "description": "Set Whether the title contains a custom title. of tab"
+    },
+    {
+      "name": "get_custom_title_of_tab_of_window",
+      "description": "Get The tab’s custom title."
+    },
+    {
+      "name": "set_custom_title_of_tab_of_window",
+      "description": "Set The tab’s custom title."
+    },
+    {
+      "name": "get_tty_of_tab_of_window",
+      "description": "Get The tab’s TTY device."
+    },
+    {
+      "name": "get_current_settings_of_tab_of_window",
+      "description": "Get The set of settings which control the tab’s behavior and appearance."
+    },
+    {
+      "name": "set_current_settings_of_tab_of_window",
+      "description": "Set The set of settings which control the tab’s behavior and appearance."
+    },
+    {
+      "name": "get_cursor_color_of_tab_of_window",
+      "description": "Get The cursor color for the tab."
+    },
+    {
+      "name": "set_cursor_color_of_tab_of_window",
+      "description": "Set The cursor color for the tab."
+    },
+    {
+      "name": "get_background_color_of_tab_of_window",
+      "description": "Get The background color for the tab."
+    },
+    {
+      "name": "set_background_color_of_tab_of_window",
+      "description": "Set The background color for the tab."
+    },
+    {
+      "name": "get_normal_text_color_of_tab_of_window",
+      "description": "Get The normal text color for the tab."
+    },
+    {
+      "name": "set_normal_text_color_of_tab_of_window",
+      "description": "Set The normal text color for the tab."
+    },
+    {
+      "name": "get_bold_text_color_of_tab_of_window",
+      "description": "Get The bold text color for the tab."
+    },
+    {
+      "name": "set_bold_text_color_of_tab_of_window",
+      "description": "Set The bold text color for the tab."
+    },
+    {
+      "name": "get_clean_commands_of_tab_of_window",
+      "description": "Get The processes which will be ignored when checking whether a tab can be closed without showing a prompt."
+    },
+    {
+      "name": "set_clean_commands_of_tab_of_window",
+      "description": "Set The processes which will be ignored when checking whether a tab can be closed without showing a prompt."
+    },
+    {
+      "name": "get_title_displays_device_name_of_tab_of_window",
+      "description": "Get Whether the title contains the device name. of tab"
+    },
+    {
+      "name": "set_title_displays_device_name_of_tab_of_window",
+      "description": "Set Whether the title contains the device name. of tab"
+    },
+    {
+      "name": "get_title_displays_shell_path_of_tab_of_window",
+      "description": "Get Whether the title contains the shell path. of tab"
+    },
+    {
+      "name": "set_title_displays_shell_path_of_tab_of_window",
+      "description": "Set Whether the title contains the shell path. of tab"
+    },
+    {
+      "name": "get_title_displays_window_size_of_tab_of_window",
+      "description": "Get Whether the title contains the tab’s size, in rows and columns."
+    },
+    {
+      "name": "set_title_displays_window_size_of_tab_of_window",
+      "description": "Set Whether the title contains the tab’s size, in rows and columns."
+    },
+    {
+      "name": "get_title_displays_file_name_of_tab_of_window",
+      "description": "Get Whether the title contains the file name. of tab"
+    },
+    {
+      "name": "set_title_displays_file_name_of_tab_of_window",
+      "description": "Set Whether the title contains the file name. of tab"
+    },
+    {
+      "name": "get_font_name_of_tab_of_window",
+      "description": "Get The name of the font used to display the tab’s contents."
+    },
+    {
+      "name": "set_font_name_of_tab_of_window",
+      "description": "Set The name of the font used to display the tab’s contents."
+    },
+    {
+      "name": "get_font_size_of_tab_of_window",
+      "description": "Get The size of the font used to display the tab’s contents."
+    },
+    {
+      "name": "set_font_size_of_tab_of_window",
+      "description": "Set The size of the font used to display the tab’s contents."
+    },
+    {
+      "name": "get_font_antialiasing_of_tab_of_window",
+      "description": "Get Whether the font used to display the tab’s contents is antialiased."
+    },
+    {
+      "name": "set_font_antialiasing_of_tab_of_window",
+      "description": "Set Whether the font used to display the tab’s contents is antialiased."
+    }
+  ],
+  "keywords": [
+    "terminal",
+    "applescript",
+    "automation",
+    "hierarchy",
+    "static-data",
+    "class-structure"
+  ],
+  "compatibility": {
+    "platforms": [
+      "darwin"
+    ]
+  },
+  "name": "terminal-applescript",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/stardae/terminal-applescript"
+  }
+}
