@@ -203,568 +203,17 @@ class TerminalMCPServer {
       result: {
         tools: [
           {
-  name: 'open',
-  description: 'Open a document.',
-  inputSchema: {
-    type: 'object',
-    properties: {
-      direct_parameter_required_file: {
-        type: 'string',
-        description: 'The file(s) to be opened.'
-      }
-    },
-    required: ['direct_parameter_required_file'],
-    additionalProperties: false
-  }
-},
-          {
-  name: 'close_for_document',
-  description: 'Close a document.',
-  inputSchema: {
-    type: 'object',
-    properties: {
-      target_document_required_string: {
-        type: 'string',
-        description: 'The document object to access (e.g., \"front document\", \"document 1\")'
-      },
-      saving_optional_save_options: {
-        type: 'string',
-        description: 'Should changes be saved before closing?'
-      },
-      saving_in_optional_file: {
-        type: 'string',
-        description: 'The file in which to save the document, if so.'
-      }
-    },
-    required: ['target_document_required_string'],
-    additionalProperties: false
-  }
-},
-          {
-  name: 'close_for_window',
-  description: 'Close a window.',
-  inputSchema: {
-    type: 'object',
-    properties: {
-      target_window_required_string: {
-        type: 'string',
-        description: 'The window object to access (e.g., \"front window\", \"window 1\")'
-      },
-      saving_optional_save_options: {
-        type: 'string',
-        description: 'Should changes be saved before closing?'
-      },
-      saving_in_optional_file: {
-        type: 'string',
-        description: 'The file in which to save the document, if so.'
-      }
-    },
-    required: ['target_window_required_string'],
-    additionalProperties: false
-  }
-},
-          {
-  name: 'save_for_document',
-  description: 'Save a document.',
-  inputSchema: {
-    type: 'object',
-    properties: {
-      target_document_required_string: {
-        type: 'string',
-        description: 'The document object to access (e.g., \"front document\", \"document 1\")'
-      },
-      inParam_optional_file: {
-        type: 'string',
-        description: 'The file in which to save the document.'
-      },
-      as_optional_saveable_file_format: {
-        type: 'string',
-        description: 'The file format to use.'
-      }
-    },
-    required: ['target_document_required_string'],
-    additionalProperties: false
-  }
-},
-          {
-  name: 'save_for_window',
-  description: 'Save a window.',
-  inputSchema: {
-    type: 'object',
-    properties: {
-      target_window_required_string: {
-        type: 'string',
-        description: 'The window object to access (e.g., \"front window\", \"window 1\")'
-      },
-      inParam_optional_file: {
-        type: 'string',
-        description: 'The file in which to save the document.'
-      },
-      as_optional_saveable_file_format: {
-        type: 'string',
-        description: 'The file format to use.'
-      }
-    },
-    required: ['target_window_required_string'],
-    additionalProperties: false
-  }
-},
-          {
-  name: 'print_file',
-  description: 'Print a document. (file input)',
-  inputSchema: {
-    type: 'object',
-    properties: {
-      direct_parameter_required_list_of_file: {
-        type: 'string',
-        description: 'The file(s), document(s), or window(s) to be printed.'
-      },
-      with_properties_optional_print_settings: {
-        type: 'string',
-        description: 'The print settings to use.'
-      },
-      print_dialog_optional_boolean: {
-        type: 'boolean',
-        description: 'Should the application show the print dialog?'
-      }
-    },
-    required: ['direct_parameter_required_list_of_file'],
-    additionalProperties: false
-  }
-},
-          {
-  name: 'print_for_document',
-  description: 'Print a document.',
-  inputSchema: {
-    type: 'object',
-    properties: {
-      target_document_required_string: {
-        type: 'string',
-        description: 'The document object to access (e.g., \"front document\", \"document 1\")'
-      },
-      with_properties_optional_print_settings: {
-        type: 'string',
-        description: 'The print settings to use.'
-      },
-      print_dialog_optional_boolean: {
-        type: 'boolean',
-        description: 'Should the application show the print dialog?'
-      }
-    },
-    required: ['target_document_required_string'],
-    additionalProperties: false
-  }
-},
-          {
-  name: 'print_for_window',
-  description: 'Print a window.',
-  inputSchema: {
-    type: 'object',
-    properties: {
-      target_window_required_string: {
-        type: 'string',
-        description: 'The window object to access (e.g., \"front window\", \"window 1\")'
-      },
-      with_properties_optional_print_settings: {
-        type: 'string',
-        description: 'The print settings to use.'
-      },
-      print_dialog_optional_boolean: {
-        type: 'boolean',
-        description: 'Should the application show the print dialog?'
-      }
-    },
-    required: ['target_window_required_string'],
-    additionalProperties: false
-  }
-},
-          {
-  name: 'quit',
-  description: 'Quit the application.',
-  inputSchema: {
-    type: 'object',
-    properties: {
-      saving_optional_save_options: {
-        type: 'string',
-        description: 'Should changes be saved before quitting?'
-      }
-    },
-    additionalProperties: false
-  }
-},
-          {
-  name: 'count_document',
-  description: 'Return the number of elements of a particular class within a document.',
-  inputSchema: {
-    type: 'object',
-    properties: {},
-    additionalProperties: false
-  }
-},
-          {
-  name: 'count_tab_of_window',
-  description: 'Return the number of elements of a particular class within a tab of window.',
-  inputSchema: {
-    type: 'object',
-    properties: {
-      target_window_required_string: {
-        type: 'string',
-        description: 'The window object to access (e.g., \"front window\", \"window 1\")'
-      }
-    },
-    required: ['target_window_required_string'],
-    additionalProperties: false
-  }
-},
-          {
-  name: 'count_settings_set',
-  description: 'Return the number of elements of a particular class within a settings set.',
-  inputSchema: {
-    type: 'object',
-    properties: {},
-    additionalProperties: false
-  }
-},
-          {
-  name: 'count_window',
-  description: 'Return the number of elements of a particular class within a window.',
-  inputSchema: {
-    type: 'object',
-    properties: {},
-    additionalProperties: false
-  }
-},
-          {
-  name: 'delete',
-  description: 'Delete an object.',
-  inputSchema: {
-    type: 'object',
-    properties: {
-      direct_parameter_required_specifier: {
-        type: 'string',
-        description: 'The object(s) to delete.'
-      }
-    },
-    required: ['direct_parameter_required_specifier'],
-    additionalProperties: false
-  }
-},
-          {
-  name: 'duplicate',
-  description: 'Copy an object.',
-  inputSchema: {
-    type: 'object',
-    properties: {
-      direct_parameter_required_specifier: {
-        type: 'string',
-        description: 'The object(s) to copy.'
-      },
-      to_optional_location_specifier: {
-        type: 'string',
-        description: 'The location for the new copy or copies.'
-      },
-      with_properties_optional_record: {
-        type: 'string',
-        description: 'Properties to set in the new copy or copies right away.'
-      }
-    },
-    required: ['direct_parameter_required_specifier'],
-    additionalProperties: false
-  }
-},
-          {
-  name: 'exists',
-  description: 'Verify that an object exists.',
-  inputSchema: {
-    type: 'object',
-    properties: {
-      direct_parameter_required_any: {
-        type: 'string',
-        description: 'The object(s) to check.'
-      }
-    },
-    required: ['direct_parameter_required_any'],
-    additionalProperties: false
-  }
-},
-          {
-  name: 'make_document',
-  description: 'Create a new document.',
-  inputSchema: {
-    type: 'object',
-    properties: {
-      at_optional_location_specifier: {
-        type: 'string',
-        description: 'The location at which to insert the object.'
-      },
-      with_data_optional_any: {
-        type: 'string',
-        description: 'The initial contents of the object.'
-      }
-    },
-    additionalProperties: false
-  }
-},
-          {
-  name: 'make_tab_of_window',
-  description: 'Create a new tab of window.',
-  inputSchema: {
-    type: 'object',
-    properties: {
-      at_required_location_specifier_window: {
-        type: 'string',
-        description: 'The window location where the tab should be created (e.g., \"window 1\")'
-      },
-      with_data_optional_any: {
-        type: 'string',
-        description: 'The initial contents of the object.'
-      },
-      with_properties_optional_text_font_name: {
-        type: 'string',
-        description: 'Optional font name property: The name of the font used to display the tab’s contents.'
-      },
-      with_properties_optional_color_cursor_color: {
-        type: 'string',
-        description: 'Optional cursor color property: The cursor color for the tab.'
-      },
-      with_properties_optional_boolean_title_displays_custom_title: {
-        type: 'boolean',
-        description: 'Optional title displays custom title property: Whether the title contains a custom title.'
-      },
-      with_properties_optional_text_custom_title: {
-        type: 'string',
-        description: 'Optional custom title property: The tab’s custom title.'
-      },
-      with_properties_optional_color_background_color: {
-        type: 'string',
-        description: 'Optional background color property: The background color for the tab.'
-      },
-      with_properties_optional_color_bold_text_color: {
-        type: 'string',
-        description: 'Optional bold text color property: The bold text color for the tab.'
-      },
-      with_properties_optional_boolean_title_displays_file_name: {
-        type: 'boolean',
-        description: 'Optional title displays file name property: Whether the title contains the file name.'
-      },
-      with_properties_optional_boolean_title_displays_device_name: {
-        type: 'boolean',
-        description: 'Optional title displays device name property: Whether the title contains the device name.'
-      },
-      with_properties_optional_integer_number_of_columns: {
-        type: 'number',
-        description: 'Optional number of columns property: The number of columns displayed in the tab.'
-      },
-      with_properties_optional_integer_number_of_rows: {
-        type: 'number',
-        description: 'Optional number of rows property: The number of rows displayed in the tab.'
-      },
-      with_properties_optional_boolean_title_displays_shell_path: {
-        type: 'boolean',
-        description: 'Optional title displays shell path property: Whether the title contains the shell path.'
-      },
-      with_properties_optional_color_normal_text_color: {
-        type: 'string',
-        description: 'Optional normal text color property: The normal text color for the tab.'
-      },
-      with_properties_optional_missing_value_clean_commands: {
-        type: 'string',
-        description: 'Optional clean commands property: The processes which will be ignored when checking whether a tab can be closed without showing a prompt.'
-      },
-      with_properties_optional_boolean_selected: {
-        type: 'boolean',
-        description: 'Optional selected property: Whether the tab is selected.'
-      },
-      with_properties_optional_integer_font_size: {
-        type: 'number',
-        description: 'Optional font size property: The size of the font used to display the tab’s contents.'
-      },
-      with_properties_optional_boolean_font_antialiasing: {
-        type: 'boolean',
-        description: 'Optional font antialiasing property: Whether the font used to display the tab’s contents is antialiased.'
-      },
-      with_properties_optional_settings_set_current_settings: {
-        type: 'string',
-        description: 'Optional current settings property: The set of settings which control the tab’s behavior and appearance.'
-      },
-      with_properties_optional_boolean_title_displays_window_size: {
-        type: 'boolean',
-        description: 'Optional title displays window size property: Whether the title contains the tab’s size, in rows and columns.'
-      }
-    },
-    required: ['at_required_location_specifier_window'],
-    additionalProperties: false
-  }
-},
-          {
-  name: 'make_settings_set',
-  description: 'Create a new settings set.',
-  inputSchema: {
-    type: 'object',
-    properties: {
-      at_optional_location_specifier: {
-        type: 'string',
-        description: 'The location at which to insert the object.'
-      },
-      with_data_optional_any: {
-        type: 'string',
-        description: 'The initial contents of the object.'
-      },
-      with_properties_optional_color_bold_text_color: {
-        type: 'string',
-        description: 'Optional bold text color property: The bold text color for the tab.'
-      },
-      with_properties_optional_integer_number_of_columns: {
-        type: 'number',
-        description: 'Optional number of columns property: The number of columns displayed in the tab.'
-      },
-      with_properties_optional_boolean_title_displays_shell_path: {
-        type: 'boolean',
-        description: 'Optional title displays shell path property: Whether the title contains the shell path.'
-      },
-      with_properties_optional_boolean_title_displays_window_size: {
-        type: 'boolean',
-        description: 'Optional title displays window size property: Whether the title contains the tab’s size, in rows and columns.'
-      },
-      with_properties_optional_color_cursor_color: {
-        type: 'string',
-        description: 'Optional cursor color property: The cursor color for the tab.'
-      },
-      with_properties_optional_boolean_font_antialiasing: {
-        type: 'boolean',
-        description: 'Optional font antialiasing property: Whether the font used to display the tab’s contents is antialiased.'
-      },
-      with_properties_optional_missing_value_clean_commands: {
-        type: 'string',
-        description: 'Optional clean commands property: The processes which will be ignored when checking whether a tab can be closed without showing a prompt.'
-      },
-      with_properties_optional_color_background_color: {
-        type: 'string',
-        description: 'Optional background color property: The background color for the tab.'
-      },
-      with_properties_optional_text_font_name: {
-        type: 'string',
-        description: 'Optional font name property: The name of the font used to display the tab’s contents.'
-      },
-      with_properties_optional_integer_font_size: {
-        type: 'number',
-        description: 'Optional font size property: The size of the font used to display the tab’s contents.'
-      },
-      with_properties_optional_boolean_title_displays_settings_name: {
-        type: 'boolean',
-        description: 'Optional title displays settings name property: Whether the title contains the settings name.'
-      },
-      with_properties_optional_integer_number_of_rows: {
-        type: 'number',
-        description: 'Optional number of rows property: The number of rows displayed in the tab.'
-      },
-      with_properties_optional_boolean_title_displays_custom_title: {
-        type: 'boolean',
-        description: 'Optional title displays custom title property: Whether the title contains a custom title.'
-      },
-      with_properties_optional_text_custom_title: {
-        type: 'string',
-        description: 'Optional custom title property: The tab’s custom title.'
-      },
-      with_properties_optional_boolean_title_displays_device_name: {
-        type: 'boolean',
-        description: 'Optional title displays device name property: Whether the title contains the device name.'
-      },
-      with_properties_optional_color_normal_text_color: {
-        type: 'string',
-        description: 'Optional normal text color property: The normal text color for the tab.'
-      },
-      with_properties_optional_text_name: {
-        type: 'string',
-        description: 'Optional name property: The name of the settings set.'
-      }
-    },
-    additionalProperties: false
-  }
-},
-          {
-  name: 'make_window',
-  description: 'Create a new window.',
-  inputSchema: {
-    type: 'object',
-    properties: {
-      at_optional_location_specifier: {
-        type: 'string',
-        description: 'The location at which to insert the object.'
-      },
-      with_data_optional_any: {
-        type: 'string',
-        description: 'The initial contents of the object.'
-      },
-      with_properties_optional_integer_index: {
-        type: 'number',
-        description: 'Optional index property: The index of the window, ordered front to back.'
-      },
-      with_properties_optional_point_position: {
-        type: 'string',
-        description: 'Optional position property: The position of the window, relative to the upper left corner of the screen.'
-      },
-      with_properties_optional_rectangle_frame: {
-        type: 'string',
-        description: 'Optional frame property: The bounding rectangle, relative to the lower left corner of the screen.'
-      },
-      with_properties_optional_boolean_frontmost: {
-        type: 'boolean',
-        description: 'Optional frontmost property: Whether the window is currently the frontmost Terminal window.'
-      },
-      with_properties_optional_boolean_zoomed: {
-        type: 'boolean',
-        description: 'Optional zoomed property: Whether the window is currently zoomed.'
-      },
-      with_properties_optional_boolean_miniaturized: {
-        type: 'boolean',
-        description: 'Optional miniaturized property: Whether the window is currently minimized.'
-      },
-      with_properties_optional_point_size: {
-        type: 'string',
-        description: 'Optional size property: The width and height of the window'
-      },
-      with_properties_optional_boolean_visible: {
-        type: 'boolean',
-        description: 'Optional visible property: Whether the window is currently visible.'
-      },
-      with_properties_optional_point_origin: {
-        type: 'string',
-        description: 'Optional origin property: The position of the window, relative to the lower left corner of the screen.'
-      },
-      with_properties_optional_rectangle_bounds: {
-        type: 'string',
-        description: 'Optional bounds property: The bounding rectangle of the window.'
-      }
-    },
-    additionalProperties: false
-  }
-},
-          {
-  name: 'move',
-  description: 'Move an object to a new location.',
-  inputSchema: {
-    type: 'object',
-    properties: {
-      direct_parameter_required_specifier: {
-        type: 'string',
-        description: 'The object(s) to move.'
-      },
-      to_required_location_specifier: {
-        type: 'string',
-        description: 'The new location for the object(s).'
-      }
-    },
-    required: ['direct_parameter_required_specifier', 'to_required_location_specifier'],
-    additionalProperties: false
-  }
-},
-          {
   name: 'get_name_of_application',
   description: 'Get The name of the application.',
   inputSchema: {
     type: 'object',
-    properties: {},
+    properties: {
+      target_application_required_string: {
+        type: 'string',
+        description: 'The application object'
+      }
+    },
+    required: ['target_application_required_string'],
     additionalProperties: false
   }
 },
@@ -773,7 +222,13 @@ class TerminalMCPServer {
   description: 'Get Is this the active application?',
   inputSchema: {
     type: 'object',
-    properties: {},
+    properties: {
+      target_application_required_string: {
+        type: 'string',
+        description: 'The application object'
+      }
+    },
+    required: ['target_application_required_string'],
     additionalProperties: false
   }
 },
@@ -782,7 +237,13 @@ class TerminalMCPServer {
   description: 'Get The version number of the application.',
   inputSchema: {
     type: 'object',
-    properties: {},
+    properties: {
+      target_application_required_string: {
+        type: 'string',
+        description: 'The application object'
+      }
+    },
+    required: ['target_application_required_string'],
     additionalProperties: false
   }
 },
@@ -794,7 +255,7 @@ class TerminalMCPServer {
     properties: {
       target_document_required_string: {
         type: 'string',
-        description: 'The document object to access (e.g., \"front document\", \"document 1\")'
+        description: 'The document object'
       }
     },
     required: ['target_document_required_string'],
@@ -809,7 +270,7 @@ class TerminalMCPServer {
     properties: {
       target_document_required_string: {
         type: 'string',
-        description: 'The document object to access (e.g., \"front document\", \"document 1\")'
+        description: 'The document object'
       }
     },
     required: ['target_document_required_string'],
@@ -824,7 +285,7 @@ class TerminalMCPServer {
     properties: {
       target_document_required_string: {
         type: 'string',
-        description: 'The document object to access (e.g., \"front document\", \"document 1\")'
+        description: 'The document object'
       }
     },
     required: ['target_document_required_string'],
@@ -839,7 +300,7 @@ class TerminalMCPServer {
     properties: {
       target_window_required_string: {
         type: 'string',
-        description: 'The window object to access (e.g., \"front window\", \"window 1\")'
+        description: 'The window object'
       }
     },
     required: ['target_window_required_string'],
@@ -854,7 +315,7 @@ class TerminalMCPServer {
     properties: {
       target_window_required_string: {
         type: 'string',
-        description: 'The window object to access (e.g., \"front window\", \"window 1\")'
+        description: 'The window object'
       }
     },
     required: ['target_window_required_string'],
@@ -869,7 +330,7 @@ class TerminalMCPServer {
     properties: {
       target_window_required_string: {
         type: 'string',
-        description: 'The window object to access (e.g., \"front window\", \"window 1\")'
+        description: 'The window object'
       }
     },
     required: ['target_window_required_string'],
@@ -884,7 +345,7 @@ class TerminalMCPServer {
     properties: {
       target_window_required_string: {
         type: 'string',
-        description: 'The window object to access (e.g., \"front window\", \"window 1\")'
+        description: 'The window object'
       },
       value_required_integer: {
         type: 'number',
@@ -903,7 +364,7 @@ class TerminalMCPServer {
     properties: {
       target_window_required_string: {
         type: 'string',
-        description: 'The window object to access (e.g., \"front window\", \"window 1\")'
+        description: 'The window object'
       }
     },
     required: ['target_window_required_string'],
@@ -918,7 +379,7 @@ class TerminalMCPServer {
     properties: {
       target_window_required_string: {
         type: 'string',
-        description: 'The window object to access (e.g., \"front window\", \"window 1\")'
+        description: 'The window object'
       },
       value_required_rectangle: {
         type: 'string',
@@ -937,7 +398,7 @@ class TerminalMCPServer {
     properties: {
       target_window_required_string: {
         type: 'string',
-        description: 'The window object to access (e.g., \"front window\", \"window 1\")'
+        description: 'The window object'
       }
     },
     required: ['target_window_required_string'],
@@ -952,7 +413,7 @@ class TerminalMCPServer {
     properties: {
       target_window_required_string: {
         type: 'string',
-        description: 'The window object to access (e.g., \"front window\", \"window 1\")'
+        description: 'The window object'
       }
     },
     required: ['target_window_required_string'],
@@ -967,7 +428,7 @@ class TerminalMCPServer {
     properties: {
       target_window_required_string: {
         type: 'string',
-        description: 'The window object to access (e.g., \"front window\", \"window 1\")'
+        description: 'The window object'
       }
     },
     required: ['target_window_required_string'],
@@ -982,7 +443,7 @@ class TerminalMCPServer {
     properties: {
       target_window_required_string: {
         type: 'string',
-        description: 'The window object to access (e.g., \"front window\", \"window 1\")'
+        description: 'The window object'
       },
       value_required_boolean: {
         type: 'boolean',
@@ -1001,7 +462,7 @@ class TerminalMCPServer {
     properties: {
       target_window_required_string: {
         type: 'string',
-        description: 'The window object to access (e.g., \"front window\", \"window 1\")'
+        description: 'The window object'
       }
     },
     required: ['target_window_required_string'],
@@ -1016,7 +477,7 @@ class TerminalMCPServer {
     properties: {
       target_window_required_string: {
         type: 'string',
-        description: 'The window object to access (e.g., \"front window\", \"window 1\")'
+        description: 'The window object'
       }
     },
     required: ['target_window_required_string'],
@@ -1031,7 +492,7 @@ class TerminalMCPServer {
     properties: {
       target_window_required_string: {
         type: 'string',
-        description: 'The window object to access (e.g., \"front window\", \"window 1\")'
+        description: 'The window object'
       },
       value_required_boolean: {
         type: 'boolean',
@@ -1050,7 +511,7 @@ class TerminalMCPServer {
     properties: {
       target_window_required_string: {
         type: 'string',
-        description: 'The window object to access (e.g., \"front window\", \"window 1\")'
+        description: 'The window object'
       }
     },
     required: ['target_window_required_string'],
@@ -1065,7 +526,7 @@ class TerminalMCPServer {
     properties: {
       target_window_required_string: {
         type: 'string',
-        description: 'The window object to access (e.g., \"front window\", \"window 1\")'
+        description: 'The window object'
       }
     },
     required: ['target_window_required_string'],
@@ -1080,7 +541,7 @@ class TerminalMCPServer {
     properties: {
       target_window_required_string: {
         type: 'string',
-        description: 'The window object to access (e.g., \"front window\", \"window 1\")'
+        description: 'The window object'
       },
       value_required_boolean: {
         type: 'boolean',
@@ -1099,7 +560,7 @@ class TerminalMCPServer {
     properties: {
       target_window_required_string: {
         type: 'string',
-        description: 'The window object to access (e.g., \"front window\", \"window 1\")'
+        description: 'The window object'
       }
     },
     required: ['target_window_required_string'],
@@ -1129,7 +590,7 @@ class TerminalMCPServer {
     properties: {
       target_document_required_string: {
         type: 'string',
-        description: 'The document object to access (e.g., \"front document\", \"document 1\")'
+        description: 'The document object'
       },
       saving_optional_save_options: {
         type: 'string',
@@ -1152,7 +613,7 @@ class TerminalMCPServer {
     properties: {
       target_window_required_string: {
         type: 'string',
-        description: 'The window object to access (e.g., \"front window\", \"window 1\")'
+        description: 'The window object'
       },
       saving_optional_save_options: {
         type: 'string',
@@ -1175,7 +636,7 @@ class TerminalMCPServer {
     properties: {
       target_document_required_string: {
         type: 'string',
-        description: 'The document object to access (e.g., \"front document\", \"document 1\")'
+        description: 'The document object'
       },
       inParam_optional_file: {
         type: 'string',
@@ -1194,7 +655,7 @@ class TerminalMCPServer {
     properties: {
       target_window_required_string: {
         type: 'string',
-        description: 'The window object to access (e.g., \"front window\", \"window 1\")'
+        description: 'The window object'
       },
       inParam_optional_file: {
         type: 'string',
@@ -1236,7 +697,7 @@ class TerminalMCPServer {
     properties: {
       target_document_required_string: {
         type: 'string',
-        description: 'The document object to access (e.g., \"front document\", \"document 1\")'
+        description: 'The document object'
       },
       with_properties_optional_print_settings: {
         type: 'string',
@@ -1259,7 +720,7 @@ class TerminalMCPServer {
     properties: {
       target_window_required_string: {
         type: 'string',
-        description: 'The window object to access (e.g., \"front window\", \"window 1\")'
+        description: 'The window object'
       },
       with_properties_optional_print_settings: {
         type: 'string',
@@ -1305,7 +766,7 @@ class TerminalMCPServer {
     properties: {
       target_window_required_string: {
         type: 'string',
-        description: 'The window object to access (e.g., \"front window\", \"window 1\")'
+        description: 'The window object to access'
       }
     },
     required: ['target_window_required_string'],
@@ -1409,7 +870,7 @@ class TerminalMCPServer {
     properties: {
       at_required_location_specifier_window: {
         type: 'string',
-        description: 'The window location where the tab should be created (e.g., \"window 1\")'
+        description: 'The window location where the tab should be created'
       },
       with_data_optional_any: {
         type: 'string',
@@ -1663,7 +1124,7 @@ class TerminalMCPServer {
     properties: {
       target_window_required_string: {
         type: 'string',
-        description: 'The window object to access (e.g., \"front window\", \"window 1\")'
+        description: 'The window object'
       }
     },
     required: ['target_window_required_string'],
@@ -1678,7 +1139,7 @@ class TerminalMCPServer {
     properties: {
       target_window_required_string: {
         type: 'string',
-        description: 'The window object to access (e.g., \"front window\", \"window 1\")'
+        description: 'The window object'
       },
       value_required_boolean: {
         type: 'boolean',
@@ -1697,7 +1158,7 @@ class TerminalMCPServer {
     properties: {
       target_window_required_string: {
         type: 'string',
-        description: 'The window object to access (e.g., \"front window\", \"window 1\")'
+        description: 'The window object'
       }
     },
     required: ['target_window_required_string'],
@@ -1712,7 +1173,7 @@ class TerminalMCPServer {
     properties: {
       target_window_required_string: {
         type: 'string',
-        description: 'The window object to access (e.g., \"front window\", \"window 1\")'
+        description: 'The window object'
       },
       value_required_point: {
         type: 'string',
@@ -1731,7 +1192,7 @@ class TerminalMCPServer {
     properties: {
       target_window_required_string: {
         type: 'string',
-        description: 'The window object to access (e.g., \"front window\", \"window 1\")'
+        description: 'The window object'
       }
     },
     required: ['target_window_required_string'],
@@ -1746,7 +1207,7 @@ class TerminalMCPServer {
     properties: {
       target_window_required_string: {
         type: 'string',
-        description: 'The window object to access (e.g., \"front window\", \"window 1\")'
+        description: 'The window object'
       },
       value_required_point: {
         type: 'string',
@@ -1765,7 +1226,7 @@ class TerminalMCPServer {
     properties: {
       target_window_required_string: {
         type: 'string',
-        description: 'The window object to access (e.g., \"front window\", \"window 1\")'
+        description: 'The window object'
       }
     },
     required: ['target_window_required_string'],
@@ -1780,7 +1241,7 @@ class TerminalMCPServer {
     properties: {
       target_window_required_string: {
         type: 'string',
-        description: 'The window object to access (e.g., \"front window\", \"window 1\")'
+        description: 'The window object'
       },
       value_required_point: {
         type: 'string',
@@ -1799,7 +1260,7 @@ class TerminalMCPServer {
     properties: {
       target_window_required_string: {
         type: 'string',
-        description: 'The window object to access (e.g., \"front window\", \"window 1\")'
+        description: 'The window object'
       }
     },
     required: ['target_window_required_string'],
@@ -1814,7 +1275,7 @@ class TerminalMCPServer {
     properties: {
       target_window_required_string: {
         type: 'string',
-        description: 'The window object to access (e.g., \"front window\", \"window 1\")'
+        description: 'The window object'
       },
       value_required_rectangle: {
         type: 'string',
@@ -1867,7 +1328,13 @@ class TerminalMCPServer {
   description: 'Get The settings set used for new windows. of application',
   inputSchema: {
     type: 'object',
-    properties: {},
+    properties: {
+      target_application_required_string: {
+        type: 'string',
+        description: 'The application object'
+      }
+    },
+    required: ['target_application_required_string'],
     additionalProperties: false
   }
 },
@@ -1877,12 +1344,16 @@ class TerminalMCPServer {
   inputSchema: {
     type: 'object',
     properties: {
+      target_application_required_string: {
+        type: 'string',
+        description: 'The application object'
+      },
       value_required_settings_set: {
         type: 'string',
         description: 'New value for The settings set used for new windows.'
       }
     },
-    required: ['value_required_settings_set'],
+    required: ['target_application_required_string', 'value_required_settings_set'],
     additionalProperties: false
   }
 },
@@ -1891,7 +1362,13 @@ class TerminalMCPServer {
   description: 'Get The settings set used for the window created on application startup.',
   inputSchema: {
     type: 'object',
-    properties: {},
+    properties: {
+      target_application_required_string: {
+        type: 'string',
+        description: 'The application object'
+      }
+    },
+    required: ['target_application_required_string'],
     additionalProperties: false
   }
 },
@@ -1901,12 +1378,16 @@ class TerminalMCPServer {
   inputSchema: {
     type: 'object',
     properties: {
+      target_application_required_string: {
+        type: 'string',
+        description: 'The application object'
+      },
       value_required_settings_set: {
         type: 'string',
         description: 'New value for The settings set used for the window created on application startup.'
       }
     },
-    required: ['value_required_settings_set'],
+    required: ['target_application_required_string', 'value_required_settings_set'],
     additionalProperties: false
   }
 },
@@ -1918,7 +1399,7 @@ class TerminalMCPServer {
     properties: {
       target_settings_set_required_string: {
         type: 'string',
-        description: 'The settings set object to access (e.g., \"front settings set\", \"settings set 1\")'
+        description: 'The settings set object'
       }
     },
     required: ['target_settings_set_required_string'],
@@ -1933,7 +1414,7 @@ class TerminalMCPServer {
     properties: {
       target_settings_set_required_string: {
         type: 'string',
-        description: 'The settings set object to access (e.g., \"front settings set\", \"settings set 1\")'
+        description: 'The settings set object'
       }
     },
     required: ['target_settings_set_required_string'],
@@ -1948,7 +1429,7 @@ class TerminalMCPServer {
     properties: {
       target_settings_set_required_string: {
         type: 'string',
-        description: 'The settings set object to access (e.g., \"front settings set\", \"settings set 1\")'
+        description: 'The settings set object'
       },
       value_required_text: {
         type: 'string',
@@ -1967,7 +1448,7 @@ class TerminalMCPServer {
     properties: {
       target_settings_set_required_string: {
         type: 'string',
-        description: 'The settings set object to access (e.g., \"front settings set\", \"settings set 1\")'
+        description: 'The settings set object'
       }
     },
     required: ['target_settings_set_required_string'],
@@ -1982,7 +1463,7 @@ class TerminalMCPServer {
     properties: {
       target_settings_set_required_string: {
         type: 'string',
-        description: 'The settings set object to access (e.g., \"front settings set\", \"settings set 1\")'
+        description: 'The settings set object'
       },
       value_required_integer: {
         type: 'number',
@@ -2001,7 +1482,7 @@ class TerminalMCPServer {
     properties: {
       target_settings_set_required_string: {
         type: 'string',
-        description: 'The settings set object to access (e.g., \"front settings set\", \"settings set 1\")'
+        description: 'The settings set object'
       }
     },
     required: ['target_settings_set_required_string'],
@@ -2016,7 +1497,7 @@ class TerminalMCPServer {
     properties: {
       target_settings_set_required_string: {
         type: 'string',
-        description: 'The settings set object to access (e.g., \"front settings set\", \"settings set 1\")'
+        description: 'The settings set object'
       },
       value_required_integer: {
         type: 'number',
@@ -2035,7 +1516,7 @@ class TerminalMCPServer {
     properties: {
       target_settings_set_required_string: {
         type: 'string',
-        description: 'The settings set object to access (e.g., \"front settings set\", \"settings set 1\")'
+        description: 'The settings set object'
       }
     },
     required: ['target_settings_set_required_string'],
@@ -2050,7 +1531,7 @@ class TerminalMCPServer {
     properties: {
       target_settings_set_required_string: {
         type: 'string',
-        description: 'The settings set object to access (e.g., \"front settings set\", \"settings set 1\")'
+        description: 'The settings set object'
       },
       value_required_color: {
         type: 'string',
@@ -2069,7 +1550,7 @@ class TerminalMCPServer {
     properties: {
       target_settings_set_required_string: {
         type: 'string',
-        description: 'The settings set object to access (e.g., \"front settings set\", \"settings set 1\")'
+        description: 'The settings set object'
       }
     },
     required: ['target_settings_set_required_string'],
@@ -2084,7 +1565,7 @@ class TerminalMCPServer {
     properties: {
       target_settings_set_required_string: {
         type: 'string',
-        description: 'The settings set object to access (e.g., \"front settings set\", \"settings set 1\")'
+        description: 'The settings set object'
       },
       value_required_color: {
         type: 'string',
@@ -2103,7 +1584,7 @@ class TerminalMCPServer {
     properties: {
       target_settings_set_required_string: {
         type: 'string',
-        description: 'The settings set object to access (e.g., \"front settings set\", \"settings set 1\")'
+        description: 'The settings set object'
       }
     },
     required: ['target_settings_set_required_string'],
@@ -2118,7 +1599,7 @@ class TerminalMCPServer {
     properties: {
       target_settings_set_required_string: {
         type: 'string',
-        description: 'The settings set object to access (e.g., \"front settings set\", \"settings set 1\")'
+        description: 'The settings set object'
       },
       value_required_color: {
         type: 'string',
@@ -2137,7 +1618,7 @@ class TerminalMCPServer {
     properties: {
       target_settings_set_required_string: {
         type: 'string',
-        description: 'The settings set object to access (e.g., \"front settings set\", \"settings set 1\")'
+        description: 'The settings set object'
       }
     },
     required: ['target_settings_set_required_string'],
@@ -2152,7 +1633,7 @@ class TerminalMCPServer {
     properties: {
       target_settings_set_required_string: {
         type: 'string',
-        description: 'The settings set object to access (e.g., \"front settings set\", \"settings set 1\")'
+        description: 'The settings set object'
       },
       value_required_color: {
         type: 'string',
@@ -2171,7 +1652,7 @@ class TerminalMCPServer {
     properties: {
       target_settings_set_required_string: {
         type: 'string',
-        description: 'The settings set object to access (e.g., \"front settings set\", \"settings set 1\")'
+        description: 'The settings set object'
       }
     },
     required: ['target_settings_set_required_string'],
@@ -2186,7 +1667,7 @@ class TerminalMCPServer {
     properties: {
       target_settings_set_required_string: {
         type: 'string',
-        description: 'The settings set object to access (e.g., \"front settings set\", \"settings set 1\")'
+        description: 'The settings set object'
       },
       value_required_text: {
         type: 'string',
@@ -2205,7 +1686,7 @@ class TerminalMCPServer {
     properties: {
       target_settings_set_required_string: {
         type: 'string',
-        description: 'The settings set object to access (e.g., \"front settings set\", \"settings set 1\")'
+        description: 'The settings set object'
       }
     },
     required: ['target_settings_set_required_string'],
@@ -2220,7 +1701,7 @@ class TerminalMCPServer {
     properties: {
       target_settings_set_required_string: {
         type: 'string',
-        description: 'The settings set object to access (e.g., \"front settings set\", \"settings set 1\")'
+        description: 'The settings set object'
       },
       value_required_integer: {
         type: 'number',
@@ -2239,7 +1720,7 @@ class TerminalMCPServer {
     properties: {
       target_settings_set_required_string: {
         type: 'string',
-        description: 'The settings set object to access (e.g., \"front settings set\", \"settings set 1\")'
+        description: 'The settings set object'
       }
     },
     required: ['target_settings_set_required_string'],
@@ -2254,7 +1735,7 @@ class TerminalMCPServer {
     properties: {
       target_settings_set_required_string: {
         type: 'string',
-        description: 'The settings set object to access (e.g., \"front settings set\", \"settings set 1\")'
+        description: 'The settings set object'
       },
       value_required_boolean: {
         type: 'boolean',
@@ -2273,7 +1754,7 @@ class TerminalMCPServer {
     properties: {
       target_settings_set_required_string: {
         type: 'string',
-        description: 'The settings set object to access (e.g., \"front settings set\", \"settings set 1\")'
+        description: 'The settings set object'
       }
     },
     required: ['target_settings_set_required_string'],
@@ -2288,7 +1769,7 @@ class TerminalMCPServer {
     properties: {
       target_settings_set_required_string: {
         type: 'string',
-        description: 'The settings set object to access (e.g., \"front settings set\", \"settings set 1\")'
+        description: 'The settings set object'
       },
       value_required_text: {
         type: 'string',
@@ -2307,7 +1788,7 @@ class TerminalMCPServer {
     properties: {
       target_settings_set_required_string: {
         type: 'string',
-        description: 'The settings set object to access (e.g., \"front settings set\", \"settings set 1\")'
+        description: 'The settings set object'
       }
     },
     required: ['target_settings_set_required_string'],
@@ -2322,7 +1803,7 @@ class TerminalMCPServer {
     properties: {
       target_settings_set_required_string: {
         type: 'string',
-        description: 'The settings set object to access (e.g., \"front settings set\", \"settings set 1\")'
+        description: 'The settings set object'
       },
       value_required_boolean: {
         type: 'boolean',
@@ -2341,7 +1822,7 @@ class TerminalMCPServer {
     properties: {
       target_settings_set_required_string: {
         type: 'string',
-        description: 'The settings set object to access (e.g., \"front settings set\", \"settings set 1\")'
+        description: 'The settings set object'
       }
     },
     required: ['target_settings_set_required_string'],
@@ -2356,7 +1837,7 @@ class TerminalMCPServer {
     properties: {
       target_settings_set_required_string: {
         type: 'string',
-        description: 'The settings set object to access (e.g., \"front settings set\", \"settings set 1\")'
+        description: 'The settings set object'
       },
       value_required_boolean: {
         type: 'boolean',
@@ -2375,7 +1856,7 @@ class TerminalMCPServer {
     properties: {
       target_settings_set_required_string: {
         type: 'string',
-        description: 'The settings set object to access (e.g., \"front settings set\", \"settings set 1\")'
+        description: 'The settings set object'
       }
     },
     required: ['target_settings_set_required_string'],
@@ -2390,7 +1871,7 @@ class TerminalMCPServer {
     properties: {
       target_settings_set_required_string: {
         type: 'string',
-        description: 'The settings set object to access (e.g., \"front settings set\", \"settings set 1\")'
+        description: 'The settings set object'
       },
       value_required_boolean: {
         type: 'boolean',
@@ -2409,7 +1890,7 @@ class TerminalMCPServer {
     properties: {
       target_settings_set_required_string: {
         type: 'string',
-        description: 'The settings set object to access (e.g., \"front settings set\", \"settings set 1\")'
+        description: 'The settings set object'
       }
     },
     required: ['target_settings_set_required_string'],
@@ -2424,7 +1905,7 @@ class TerminalMCPServer {
     properties: {
       target_settings_set_required_string: {
         type: 'string',
-        description: 'The settings set object to access (e.g., \"front settings set\", \"settings set 1\")'
+        description: 'The settings set object'
       },
       value_required_boolean: {
         type: 'boolean',
@@ -2443,7 +1924,7 @@ class TerminalMCPServer {
     properties: {
       target_settings_set_required_string: {
         type: 'string',
-        description: 'The settings set object to access (e.g., \"front settings set\", \"settings set 1\")'
+        description: 'The settings set object'
       }
     },
     required: ['target_settings_set_required_string'],
@@ -2458,7 +1939,7 @@ class TerminalMCPServer {
     properties: {
       target_settings_set_required_string: {
         type: 'string',
-        description: 'The settings set object to access (e.g., \"front settings set\", \"settings set 1\")'
+        description: 'The settings set object'
       },
       value_required_boolean: {
         type: 'boolean',
@@ -2477,7 +1958,7 @@ class TerminalMCPServer {
     properties: {
       target_settings_set_required_string: {
         type: 'string',
-        description: 'The settings set object to access (e.g., \"front settings set\", \"settings set 1\")'
+        description: 'The settings set object'
       }
     },
     required: ['target_settings_set_required_string'],
@@ -2492,7 +1973,7 @@ class TerminalMCPServer {
     properties: {
       target_settings_set_required_string: {
         type: 'string',
-        description: 'The settings set object to access (e.g., \"front settings set\", \"settings set 1\")'
+        description: 'The settings set object'
       },
       value_required_text: {
         type: 'string',
@@ -2511,11 +1992,11 @@ class TerminalMCPServer {
     properties: {
       target_tab_required_string: {
         type: 'string',
-        description: 'The tab object to access (e.g., \"front tab\", \"tab 1\")'
+        description: 'The tab object'
       },
       target_window_required_string: {
         type: 'string',
-        description: 'The window object to access (e.g., \"front window\", \"window 1\")'
+        description: 'The window containing the tab'
       }
     },
     required: ['target_tab_required_string', 'target_window_required_string'],
@@ -2530,11 +2011,11 @@ class TerminalMCPServer {
     properties: {
       target_tab_required_string: {
         type: 'string',
-        description: 'The tab object to access (e.g., \"front tab\", \"tab 1\")'
+        description: 'The tab object'
       },
       target_window_required_string: {
         type: 'string',
-        description: 'The window object to access (e.g., \"front window\", \"window 1\")'
+        description: 'The window containing the tab'
       },
       value_required_integer: {
         type: 'number',
@@ -2553,11 +2034,11 @@ class TerminalMCPServer {
     properties: {
       target_tab_required_string: {
         type: 'string',
-        description: 'The tab object to access (e.g., \"front tab\", \"tab 1\")'
+        description: 'The tab object'
       },
       target_window_required_string: {
         type: 'string',
-        description: 'The window object to access (e.g., \"front window\", \"window 1\")'
+        description: 'The window containing the tab'
       }
     },
     required: ['target_tab_required_string', 'target_window_required_string'],
@@ -2572,11 +2053,11 @@ class TerminalMCPServer {
     properties: {
       target_tab_required_string: {
         type: 'string',
-        description: 'The tab object to access (e.g., \"front tab\", \"tab 1\")'
+        description: 'The tab object'
       },
       target_window_required_string: {
         type: 'string',
-        description: 'The window object to access (e.g., \"front window\", \"window 1\")'
+        description: 'The window containing the tab'
       },
       value_required_integer: {
         type: 'number',
@@ -2595,11 +2076,11 @@ class TerminalMCPServer {
     properties: {
       target_tab_required_string: {
         type: 'string',
-        description: 'The tab object to access (e.g., \"front tab\", \"tab 1\")'
+        description: 'The tab object'
       },
       target_window_required_string: {
         type: 'string',
-        description: 'The window object to access (e.g., \"front window\", \"window 1\")'
+        description: 'The window containing the tab'
       }
     },
     required: ['target_tab_required_string', 'target_window_required_string'],
@@ -2614,11 +2095,11 @@ class TerminalMCPServer {
     properties: {
       target_tab_required_string: {
         type: 'string',
-        description: 'The tab object to access (e.g., \"front tab\", \"tab 1\")'
+        description: 'The tab object'
       },
       target_window_required_string: {
         type: 'string',
-        description: 'The window object to access (e.g., \"front window\", \"window 1\")'
+        description: 'The window containing the tab'
       }
     },
     required: ['target_tab_required_string', 'target_window_required_string'],
@@ -2633,11 +2114,11 @@ class TerminalMCPServer {
     properties: {
       target_tab_required_string: {
         type: 'string',
-        description: 'The tab object to access (e.g., \"front tab\", \"tab 1\")'
+        description: 'The tab object'
       },
       target_window_required_string: {
         type: 'string',
-        description: 'The window object to access (e.g., \"front window\", \"window 1\")'
+        description: 'The window containing the tab'
       }
     },
     required: ['target_tab_required_string', 'target_window_required_string'],
@@ -2652,11 +2133,11 @@ class TerminalMCPServer {
     properties: {
       target_tab_required_string: {
         type: 'string',
-        description: 'The tab object to access (e.g., \"front tab\", \"tab 1\")'
+        description: 'The tab object'
       },
       target_window_required_string: {
         type: 'string',
-        description: 'The window object to access (e.g., \"front window\", \"window 1\")'
+        description: 'The window containing the tab'
       }
     },
     required: ['target_tab_required_string', 'target_window_required_string'],
@@ -2671,11 +2152,11 @@ class TerminalMCPServer {
     properties: {
       target_tab_required_string: {
         type: 'string',
-        description: 'The tab object to access (e.g., \"front tab\", \"tab 1\")'
+        description: 'The tab object'
       },
       target_window_required_string: {
         type: 'string',
-        description: 'The window object to access (e.g., \"front window\", \"window 1\")'
+        description: 'The window containing the tab'
       }
     },
     required: ['target_tab_required_string', 'target_window_required_string'],
@@ -2690,11 +2171,11 @@ class TerminalMCPServer {
     properties: {
       target_tab_required_string: {
         type: 'string',
-        description: 'The tab object to access (e.g., \"front tab\", \"tab 1\")'
+        description: 'The tab object'
       },
       target_window_required_string: {
         type: 'string',
-        description: 'The window object to access (e.g., \"front window\", \"window 1\")'
+        description: 'The window containing the tab'
       },
       value_required_boolean: {
         type: 'boolean',
@@ -2713,11 +2194,11 @@ class TerminalMCPServer {
     properties: {
       target_tab_required_string: {
         type: 'string',
-        description: 'The tab object to access (e.g., \"front tab\", \"tab 1\")'
+        description: 'The tab object'
       },
       target_window_required_string: {
         type: 'string',
-        description: 'The window object to access (e.g., \"front window\", \"window 1\")'
+        description: 'The window containing the tab'
       }
     },
     required: ['target_tab_required_string', 'target_window_required_string'],
@@ -2732,11 +2213,11 @@ class TerminalMCPServer {
     properties: {
       target_tab_required_string: {
         type: 'string',
-        description: 'The tab object to access (e.g., \"front tab\", \"tab 1\")'
+        description: 'The tab object'
       },
       target_window_required_string: {
         type: 'string',
-        description: 'The window object to access (e.g., \"front window\", \"window 1\")'
+        description: 'The window containing the tab'
       },
       value_required_boolean: {
         type: 'boolean',
@@ -2755,11 +2236,11 @@ class TerminalMCPServer {
     properties: {
       target_tab_required_string: {
         type: 'string',
-        description: 'The tab object to access (e.g., \"front tab\", \"tab 1\")'
+        description: 'The tab object'
       },
       target_window_required_string: {
         type: 'string',
-        description: 'The window object to access (e.g., \"front window\", \"window 1\")'
+        description: 'The window containing the tab'
       }
     },
     required: ['target_tab_required_string', 'target_window_required_string'],
@@ -2774,11 +2255,11 @@ class TerminalMCPServer {
     properties: {
       target_tab_required_string: {
         type: 'string',
-        description: 'The tab object to access (e.g., \"front tab\", \"tab 1\")'
+        description: 'The tab object'
       },
       target_window_required_string: {
         type: 'string',
-        description: 'The window object to access (e.g., \"front window\", \"window 1\")'
+        description: 'The window containing the tab'
       },
       value_required_text: {
         type: 'string',
@@ -2797,11 +2278,11 @@ class TerminalMCPServer {
     properties: {
       target_tab_required_string: {
         type: 'string',
-        description: 'The tab object to access (e.g., \"front tab\", \"tab 1\")'
+        description: 'The tab object'
       },
       target_window_required_string: {
         type: 'string',
-        description: 'The window object to access (e.g., \"front window\", \"window 1\")'
+        description: 'The window containing the tab'
       }
     },
     required: ['target_tab_required_string', 'target_window_required_string'],
@@ -2816,11 +2297,11 @@ class TerminalMCPServer {
     properties: {
       target_tab_required_string: {
         type: 'string',
-        description: 'The tab object to access (e.g., \"front tab\", \"tab 1\")'
+        description: 'The tab object'
       },
       target_window_required_string: {
         type: 'string',
-        description: 'The window object to access (e.g., \"front window\", \"window 1\")'
+        description: 'The window containing the tab'
       }
     },
     required: ['target_tab_required_string', 'target_window_required_string'],
@@ -2835,11 +2316,11 @@ class TerminalMCPServer {
     properties: {
       target_tab_required_string: {
         type: 'string',
-        description: 'The tab object to access (e.g., \"front tab\", \"tab 1\")'
+        description: 'The tab object'
       },
       target_window_required_string: {
         type: 'string',
-        description: 'The window object to access (e.g., \"front window\", \"window 1\")'
+        description: 'The window containing the tab'
       },
       value_required_settings_set: {
         type: 'string',
@@ -2858,11 +2339,11 @@ class TerminalMCPServer {
     properties: {
       target_tab_required_string: {
         type: 'string',
-        description: 'The tab object to access (e.g., \"front tab\", \"tab 1\")'
+        description: 'The tab object'
       },
       target_window_required_string: {
         type: 'string',
-        description: 'The window object to access (e.g., \"front window\", \"window 1\")'
+        description: 'The window containing the tab'
       }
     },
     required: ['target_tab_required_string', 'target_window_required_string'],
@@ -2877,11 +2358,11 @@ class TerminalMCPServer {
     properties: {
       target_tab_required_string: {
         type: 'string',
-        description: 'The tab object to access (e.g., \"front tab\", \"tab 1\")'
+        description: 'The tab object'
       },
       target_window_required_string: {
         type: 'string',
-        description: 'The window object to access (e.g., \"front window\", \"window 1\")'
+        description: 'The window containing the tab'
       },
       value_required_color: {
         type: 'string',
@@ -2900,11 +2381,11 @@ class TerminalMCPServer {
     properties: {
       target_tab_required_string: {
         type: 'string',
-        description: 'The tab object to access (e.g., \"front tab\", \"tab 1\")'
+        description: 'The tab object'
       },
       target_window_required_string: {
         type: 'string',
-        description: 'The window object to access (e.g., \"front window\", \"window 1\")'
+        description: 'The window containing the tab'
       }
     },
     required: ['target_tab_required_string', 'target_window_required_string'],
@@ -2919,11 +2400,11 @@ class TerminalMCPServer {
     properties: {
       target_tab_required_string: {
         type: 'string',
-        description: 'The tab object to access (e.g., \"front tab\", \"tab 1\")'
+        description: 'The tab object'
       },
       target_window_required_string: {
         type: 'string',
-        description: 'The window object to access (e.g., \"front window\", \"window 1\")'
+        description: 'The window containing the tab'
       },
       value_required_color: {
         type: 'string',
@@ -2942,11 +2423,11 @@ class TerminalMCPServer {
     properties: {
       target_tab_required_string: {
         type: 'string',
-        description: 'The tab object to access (e.g., \"front tab\", \"tab 1\")'
+        description: 'The tab object'
       },
       target_window_required_string: {
         type: 'string',
-        description: 'The window object to access (e.g., \"front window\", \"window 1\")'
+        description: 'The window containing the tab'
       }
     },
     required: ['target_tab_required_string', 'target_window_required_string'],
@@ -2961,11 +2442,11 @@ class TerminalMCPServer {
     properties: {
       target_tab_required_string: {
         type: 'string',
-        description: 'The tab object to access (e.g., \"front tab\", \"tab 1\")'
+        description: 'The tab object'
       },
       target_window_required_string: {
         type: 'string',
-        description: 'The window object to access (e.g., \"front window\", \"window 1\")'
+        description: 'The window containing the tab'
       },
       value_required_color: {
         type: 'string',
@@ -2984,11 +2465,11 @@ class TerminalMCPServer {
     properties: {
       target_tab_required_string: {
         type: 'string',
-        description: 'The tab object to access (e.g., \"front tab\", \"tab 1\")'
+        description: 'The tab object'
       },
       target_window_required_string: {
         type: 'string',
-        description: 'The window object to access (e.g., \"front window\", \"window 1\")'
+        description: 'The window containing the tab'
       }
     },
     required: ['target_tab_required_string', 'target_window_required_string'],
@@ -3003,11 +2484,11 @@ class TerminalMCPServer {
     properties: {
       target_tab_required_string: {
         type: 'string',
-        description: 'The tab object to access (e.g., \"front tab\", \"tab 1\")'
+        description: 'The tab object'
       },
       target_window_required_string: {
         type: 'string',
-        description: 'The window object to access (e.g., \"front window\", \"window 1\")'
+        description: 'The window containing the tab'
       },
       value_required_color: {
         type: 'string',
@@ -3026,11 +2507,11 @@ class TerminalMCPServer {
     properties: {
       target_tab_required_string: {
         type: 'string',
-        description: 'The tab object to access (e.g., \"front tab\", \"tab 1\")'
+        description: 'The tab object'
       },
       target_window_required_string: {
         type: 'string',
-        description: 'The window object to access (e.g., \"front window\", \"window 1\")'
+        description: 'The window containing the tab'
       }
     },
     required: ['target_tab_required_string', 'target_window_required_string'],
@@ -3045,11 +2526,11 @@ class TerminalMCPServer {
     properties: {
       target_tab_required_string: {
         type: 'string',
-        description: 'The tab object to access (e.g., \"front tab\", \"tab 1\")'
+        description: 'The tab object'
       },
       target_window_required_string: {
         type: 'string',
-        description: 'The window object to access (e.g., \"front window\", \"window 1\")'
+        description: 'The window containing the tab'
       },
       value_required_text: {
         type: 'string',
@@ -3068,11 +2549,11 @@ class TerminalMCPServer {
     properties: {
       target_tab_required_string: {
         type: 'string',
-        description: 'The tab object to access (e.g., \"front tab\", \"tab 1\")'
+        description: 'The tab object'
       },
       target_window_required_string: {
         type: 'string',
-        description: 'The window object to access (e.g., \"front window\", \"window 1\")'
+        description: 'The window containing the tab'
       }
     },
     required: ['target_tab_required_string', 'target_window_required_string'],
@@ -3087,11 +2568,11 @@ class TerminalMCPServer {
     properties: {
       target_tab_required_string: {
         type: 'string',
-        description: 'The tab object to access (e.g., \"front tab\", \"tab 1\")'
+        description: 'The tab object'
       },
       target_window_required_string: {
         type: 'string',
-        description: 'The window object to access (e.g., \"front window\", \"window 1\")'
+        description: 'The window containing the tab'
       },
       value_required_boolean: {
         type: 'boolean',
@@ -3110,11 +2591,11 @@ class TerminalMCPServer {
     properties: {
       target_tab_required_string: {
         type: 'string',
-        description: 'The tab object to access (e.g., \"front tab\", \"tab 1\")'
+        description: 'The tab object'
       },
       target_window_required_string: {
         type: 'string',
-        description: 'The window object to access (e.g., \"front window\", \"window 1\")'
+        description: 'The window containing the tab'
       }
     },
     required: ['target_tab_required_string', 'target_window_required_string'],
@@ -3129,11 +2610,11 @@ class TerminalMCPServer {
     properties: {
       target_tab_required_string: {
         type: 'string',
-        description: 'The tab object to access (e.g., \"front tab\", \"tab 1\")'
+        description: 'The tab object'
       },
       target_window_required_string: {
         type: 'string',
-        description: 'The window object to access (e.g., \"front window\", \"window 1\")'
+        description: 'The window containing the tab'
       },
       value_required_boolean: {
         type: 'boolean',
@@ -3152,11 +2633,11 @@ class TerminalMCPServer {
     properties: {
       target_tab_required_string: {
         type: 'string',
-        description: 'The tab object to access (e.g., \"front tab\", \"tab 1\")'
+        description: 'The tab object'
       },
       target_window_required_string: {
         type: 'string',
-        description: 'The window object to access (e.g., \"front window\", \"window 1\")'
+        description: 'The window containing the tab'
       }
     },
     required: ['target_tab_required_string', 'target_window_required_string'],
@@ -3171,11 +2652,11 @@ class TerminalMCPServer {
     properties: {
       target_tab_required_string: {
         type: 'string',
-        description: 'The tab object to access (e.g., \"front tab\", \"tab 1\")'
+        description: 'The tab object'
       },
       target_window_required_string: {
         type: 'string',
-        description: 'The window object to access (e.g., \"front window\", \"window 1\")'
+        description: 'The window containing the tab'
       },
       value_required_boolean: {
         type: 'boolean',
@@ -3194,11 +2675,11 @@ class TerminalMCPServer {
     properties: {
       target_tab_required_string: {
         type: 'string',
-        description: 'The tab object to access (e.g., \"front tab\", \"tab 1\")'
+        description: 'The tab object'
       },
       target_window_required_string: {
         type: 'string',
-        description: 'The window object to access (e.g., \"front window\", \"window 1\")'
+        description: 'The window containing the tab'
       }
     },
     required: ['target_tab_required_string', 'target_window_required_string'],
@@ -3213,11 +2694,11 @@ class TerminalMCPServer {
     properties: {
       target_tab_required_string: {
         type: 'string',
-        description: 'The tab object to access (e.g., \"front tab\", \"tab 1\")'
+        description: 'The tab object'
       },
       target_window_required_string: {
         type: 'string',
-        description: 'The window object to access (e.g., \"front window\", \"window 1\")'
+        description: 'The window containing the tab'
       },
       value_required_boolean: {
         type: 'boolean',
@@ -3236,11 +2717,11 @@ class TerminalMCPServer {
     properties: {
       target_tab_required_string: {
         type: 'string',
-        description: 'The tab object to access (e.g., \"front tab\", \"tab 1\")'
+        description: 'The tab object'
       },
       target_window_required_string: {
         type: 'string',
-        description: 'The window object to access (e.g., \"front window\", \"window 1\")'
+        description: 'The window containing the tab'
       }
     },
     required: ['target_tab_required_string', 'target_window_required_string'],
@@ -3255,11 +2736,11 @@ class TerminalMCPServer {
     properties: {
       target_tab_required_string: {
         type: 'string',
-        description: 'The tab object to access (e.g., \"front tab\", \"tab 1\")'
+        description: 'The tab object'
       },
       target_window_required_string: {
         type: 'string',
-        description: 'The window object to access (e.g., \"front window\", \"window 1\")'
+        description: 'The window containing the tab'
       },
       value_required_text: {
         type: 'string',
@@ -3278,11 +2759,11 @@ class TerminalMCPServer {
     properties: {
       target_tab_required_string: {
         type: 'string',
-        description: 'The tab object to access (e.g., \"front tab\", \"tab 1\")'
+        description: 'The tab object'
       },
       target_window_required_string: {
         type: 'string',
-        description: 'The window object to access (e.g., \"front window\", \"window 1\")'
+        description: 'The window containing the tab'
       }
     },
     required: ['target_tab_required_string', 'target_window_required_string'],
@@ -3297,11 +2778,11 @@ class TerminalMCPServer {
     properties: {
       target_tab_required_string: {
         type: 'string',
-        description: 'The tab object to access (e.g., \"front tab\", \"tab 1\")'
+        description: 'The tab object'
       },
       target_window_required_string: {
         type: 'string',
-        description: 'The window object to access (e.g., \"front window\", \"window 1\")'
+        description: 'The window containing the tab'
       },
       value_required_integer: {
         type: 'number',
@@ -3320,11 +2801,11 @@ class TerminalMCPServer {
     properties: {
       target_tab_required_string: {
         type: 'string',
-        description: 'The tab object to access (e.g., \"front tab\", \"tab 1\")'
+        description: 'The tab object'
       },
       target_window_required_string: {
         type: 'string',
-        description: 'The window object to access (e.g., \"front window\", \"window 1\")'
+        description: 'The window containing the tab'
       }
     },
     required: ['target_tab_required_string', 'target_window_required_string'],
@@ -3339,11 +2820,11 @@ class TerminalMCPServer {
     properties: {
       target_tab_required_string: {
         type: 'string',
-        description: 'The tab object to access (e.g., \"front tab\", \"tab 1\")'
+        description: 'The tab object'
       },
       target_window_required_string: {
         type: 'string',
-        description: 'The window object to access (e.g., \"front window\", \"window 1\")'
+        description: 'The window containing the tab'
       },
       value_required_boolean: {
         type: 'boolean',
@@ -3390,77 +2871,14 @@ class TerminalMCPServer {
       let result;
 
       switch (name) {
-        case 'open':
-  result = await this.open(args.direct_parameter_required_file);
-  break;
-        case 'close_for_document':
-  result = await this.closeForDocument(args.target_document_required_string, args.saving_optional_save_options, args.saving_in_optional_file);
-  break;
-        case 'close_for_window':
-  result = await this.closeForWindow(args.target_window_required_string, args.saving_optional_save_options, args.saving_in_optional_file);
-  break;
-        case 'save_for_document':
-  result = await this.saveForDocument(args.target_document_required_string, args.inParam_optional_file, args.as_optional_saveable_file_format);
-  break;
-        case 'save_for_window':
-  result = await this.saveForWindow(args.target_window_required_string, args.inParam_optional_file, args.as_optional_saveable_file_format);
-  break;
-        case 'print_file':
-  result = await this.printFile(args.direct_parameter_required_list_of_file, args.with_properties_optional_print_settings, args.print_dialog_optional_boolean);
-  break;
-        case 'print_for_document':
-  result = await this.printForDocument(args.target_document_required_string, args.with_properties_optional_print_settings, args.print_dialog_optional_boolean);
-  break;
-        case 'print_for_window':
-  result = await this.printForWindow(args.target_window_required_string, args.with_properties_optional_print_settings, args.print_dialog_optional_boolean);
-  break;
-        case 'quit':
-  result = await this.quit(args.saving_optional_save_options);
-  break;
-        case 'count_document':
-  result = await this.countDocument();
-  break;
-        case 'count_tab_of_window':
-  result = await this.countTabOfWindow(args.target_window_required_string);
-  break;
-        case 'count_settings_set':
-  result = await this.countSettingsSet();
-  break;
-        case 'count_window':
-  result = await this.countWindow();
-  break;
-        case 'delete':
-  result = await this.delete(args.direct_parameter_required_specifier);
-  break;
-        case 'duplicate':
-  result = await this.duplicate(args.direct_parameter_required_specifier, args.to_optional_location_specifier, args.with_properties_optional_record);
-  break;
-        case 'exists':
-  result = await this.exists(args.direct_parameter_required_any);
-  break;
-        case 'make_document':
-  result = await this.makeDocument(args.at_optional_location_specifier, args.with_data_optional_any);
-  break;
-        case 'make_tab_of_window':
-  result = await this.makeTabOfWindow(args.at_required_location_specifier_window, args.with_data_optional_any, args.with_properties_optional_text_font_name, args.with_properties_optional_color_cursor_color, args.with_properties_optional_boolean_title_displays_custom_title, args.with_properties_optional_text_custom_title, args.with_properties_optional_color_background_color, args.with_properties_optional_color_bold_text_color, args.with_properties_optional_boolean_title_displays_file_name, args.with_properties_optional_boolean_title_displays_device_name, args.with_properties_optional_integer_number_of_columns, args.with_properties_optional_integer_number_of_rows, args.with_properties_optional_boolean_title_displays_shell_path, args.with_properties_optional_color_normal_text_color, args.with_properties_optional_missing_value_clean_commands, args.with_properties_optional_boolean_selected, args.with_properties_optional_integer_font_size, args.with_properties_optional_boolean_font_antialiasing, args.with_properties_optional_settings_set_current_settings, args.with_properties_optional_boolean_title_displays_window_size);
-  break;
-        case 'make_settings_set':
-  result = await this.makeSettingsSet(args.at_optional_location_specifier, args.with_data_optional_any, args.with_properties_optional_color_bold_text_color, args.with_properties_optional_integer_number_of_columns, args.with_properties_optional_boolean_title_displays_shell_path, args.with_properties_optional_boolean_title_displays_window_size, args.with_properties_optional_color_cursor_color, args.with_properties_optional_boolean_font_antialiasing, args.with_properties_optional_missing_value_clean_commands, args.with_properties_optional_color_background_color, args.with_properties_optional_text_font_name, args.with_properties_optional_integer_font_size, args.with_properties_optional_boolean_title_displays_settings_name, args.with_properties_optional_integer_number_of_rows, args.with_properties_optional_boolean_title_displays_custom_title, args.with_properties_optional_text_custom_title, args.with_properties_optional_boolean_title_displays_device_name, args.with_properties_optional_color_normal_text_color, args.with_properties_optional_text_name);
-  break;
-        case 'make_window':
-  result = await this.makeWindow(args.at_optional_location_specifier, args.with_data_optional_any, args.with_properties_optional_integer_index, args.with_properties_optional_point_position, args.with_properties_optional_rectangle_frame, args.with_properties_optional_boolean_frontmost, args.with_properties_optional_boolean_zoomed, args.with_properties_optional_boolean_miniaturized, args.with_properties_optional_point_size, args.with_properties_optional_boolean_visible, args.with_properties_optional_point_origin, args.with_properties_optional_rectangle_bounds);
-  break;
-        case 'move':
-  result = await this.move(args.direct_parameter_required_specifier, args.to_required_location_specifier);
-  break;
         case 'get_name_of_application':
-  result = await this.getNameOfApplication();
+  result = await this.getNameOfApplication(args.target_application_required_string);
   break;
         case 'get_frontmost_of_application':
-  result = await this.getFrontmostOfApplication();
+  result = await this.getFrontmostOfApplication(args.target_application_required_string);
   break;
         case 'get_version_of_application':
-  result = await this.getVersionOfApplication();
+  result = await this.getVersionOfApplication(args.target_application_required_string);
   break;
         case 'get_name_of_document':
   result = await this.getNameOfDocument(args.target_document_required_string);
@@ -3622,16 +3040,16 @@ class TerminalMCPServer {
   result = await this.getUrl(args.direct_parameter_required_text);
   break;
         case 'get_default_settings_of_application':
-  result = await this.getDefaultSettingsOfApplication();
+  result = await this.getDefaultSettingsOfApplication(args.target_application_required_string);
   break;
         case 'set_default_settings_of_application':
-  result = await this.setDefaultSettingsOfApplication(args.value_required_settings_set);
+  result = await this.setDefaultSettingsOfApplication(args.target_application_required_string, args.value_required_settings_set);
   break;
         case 'get_startup_settings_of_application':
-  result = await this.getStartupSettingsOfApplication();
+  result = await this.getStartupSettingsOfApplication(args.target_application_required_string);
   break;
         case 'set_startup_settings_of_application':
-  result = await this.setStartupSettingsOfApplication(args.value_required_settings_set);
+  result = await this.setStartupSettingsOfApplication(args.target_application_required_string, args.value_required_settings_set);
   break;
         case 'get_id_of_settings_set':
   result = await this.getIdOfSettingsSet(args.target_settings_set_required_string);
@@ -3898,839 +3316,18 @@ class TerminalMCPServer {
     }
   }
 
-  async open(direct_parameter_required_file) {
-    if (direct_parameter_required_file === undefined || direct_parameter_required_file === null) {
-      throw new Error("direct_parameter_required_file is required");
+  async getNameOfApplication(target_application_required_string) {
+    if (!target_application_required_string || typeof target_application_required_string !== "string") {
+      throw new Error("target_application_required_string is required and must be a string");
     }
 
-    const castedDirect_parameter = direct_parameter_required_file ? castAndEscape(direct_parameter_required_file) : null;
+    const escapedApplication = escapeForAppleScript(target_application_required_string);
 
     const script = `
       tell application "Terminal"
-        open "${castedDirect_parameter}"
-      end tell
-    `;
-
-    const result = await executeAppleScript(script);
-    return {
-      success: result !== "Error",
-      message: result,
-      script: script,
-      direct_parameter: direct_parameter_required_file || null
-    };
-  }
-
-  async closeForDocument(target_document_required_string, saving_optional_save_options, saving_in_optional_file) {
-    if (!target_document_required_string || typeof target_document_required_string !== "string") {
-      throw new Error("target_document_required_string is required and must be a string");
-    }
-
-    const castedDocument = castAndEscape(target_document_required_string);
-    const castedSaving = saving_optional_save_options ? castAndEscape(saving_optional_save_options) : null;
-    const valueForScriptSaving = castedSaving && typeof castedSaving === 'string' && !castedSaving.startsWith('{') && !castedSaving.startsWith('date') ? `"${castedSaving.replace(/"/g, "'")}"` : castedSaving;
-    const castedSaving_in = saving_in_optional_file ? castAndEscape(saving_in_optional_file) : null;
-    const valueForScriptSaving_in = castedSaving_in && typeof castedSaving_in === 'string' && !castedSaving_in.startsWith('{') && !castedSaving_in.startsWith('date') ? `"${castedSaving_in.replace(/"/g, "'")}"` : castedSaving_in;
-
-    // Helper function to build properties record from individual property parameters
-    function buildPropertiesRecord(propertyParams) {
-      const definedProps = propertyParams.filter(p => p.value !== undefined && p.value !== null && p.value !== '');
-      if (definedProps.length === 0) return '';
-      const propStrings = definedProps.map(p => {
-        const castedValue = castAndEscape(p.value, p.type || null);
-        // For strings that got escaped, wrap in quotes and replace inner quotes
-        if (typeof castedValue === 'string' && !castedValue.startsWith('{') && !castedValue.startsWith('date')) {
-          return `${p.prop}:"${castedValue.replace(/"/g, "'")}"`;
-        }
-        // For numbers, booleans, lists, records, dates - no quotes
-        return `${p.prop}:${castedValue}`;
-      });
-      return ` with properties {${propStrings.join(', ')}}`;
-    }
-
-    const script = `
-      tell application "Terminal"
-        tell ${castedDocument}
-          close it${saving_optional_save_options ? ' saving ' + valueForScriptSaving : ''}${saving_in_optional_file ? ' saving in ' + valueForScriptSaving_in : ''}
+        tell ${escapedApplication}
+          return name of it
         end tell
-      end tell
-    `;
-
-    const result = await executeAppleScript(script);
-    return {
-      success: result !== "Error",
-      message: result,
-      script: script,
-      document: target_document_required_string,
-      saving: saving_optional_save_options || null,
-      saving_in: saving_in_optional_file || null
-    };
-  }
-
-  async closeForWindow(target_window_required_string, saving_optional_save_options, saving_in_optional_file) {
-    if (!target_window_required_string || typeof target_window_required_string !== "string") {
-      throw new Error("target_window_required_string is required and must be a string");
-    }
-
-    const castedWindow = castAndEscape(target_window_required_string);
-    const castedSaving = saving_optional_save_options ? castAndEscape(saving_optional_save_options) : null;
-    const valueForScriptSaving = castedSaving && typeof castedSaving === 'string' && !castedSaving.startsWith('{') && !castedSaving.startsWith('date') ? `"${castedSaving.replace(/"/g, "'")}"` : castedSaving;
-    const castedSaving_in = saving_in_optional_file ? castAndEscape(saving_in_optional_file) : null;
-    const valueForScriptSaving_in = castedSaving_in && typeof castedSaving_in === 'string' && !castedSaving_in.startsWith('{') && !castedSaving_in.startsWith('date') ? `"${castedSaving_in.replace(/"/g, "'")}"` : castedSaving_in;
-
-    // Helper function to build properties record from individual property parameters
-    function buildPropertiesRecord(propertyParams) {
-      const definedProps = propertyParams.filter(p => p.value !== undefined && p.value !== null && p.value !== '');
-      if (definedProps.length === 0) return '';
-      const propStrings = definedProps.map(p => {
-        const castedValue = castAndEscape(p.value, p.type || null);
-        // For strings that got escaped, wrap in quotes and replace inner quotes
-        if (typeof castedValue === 'string' && !castedValue.startsWith('{') && !castedValue.startsWith('date')) {
-          return `${p.prop}:"${castedValue.replace(/"/g, "'")}"`;
-        }
-        // For numbers, booleans, lists, records, dates - no quotes
-        return `${p.prop}:${castedValue}`;
-      });
-      return ` with properties {${propStrings.join(', ')}}`;
-    }
-
-    const script = `
-      tell application "Terminal"
-        tell ${castedWindow}
-          close it${saving_optional_save_options ? ' saving ' + valueForScriptSaving : ''}${saving_in_optional_file ? ' saving in ' + valueForScriptSaving_in : ''}
-        end tell
-      end tell
-    `;
-
-    const result = await executeAppleScript(script);
-    return {
-      success: result !== "Error",
-      message: result,
-      script: script,
-      window: target_window_required_string,
-      saving: saving_optional_save_options || null,
-      saving_in: saving_in_optional_file || null
-    };
-  }
-
-  async saveForDocument(target_document_required_string, inParam_optional_file, as_optional_saveable_file_format) {
-    if (!target_document_required_string || typeof target_document_required_string !== "string") {
-      throw new Error("target_document_required_string is required and must be a string");
-    }
-
-    const castedDocument = castAndEscape(target_document_required_string);
-    const castedIn = inParam_optional_file ? castAndEscape(inParam_optional_file) : null;
-    const valueForScriptIn = castedIn && typeof castedIn === 'string' && !castedIn.startsWith('{') && !castedIn.startsWith('date') ? `"${castedIn.replace(/"/g, "'")}"` : castedIn;
-    const castedAs = as_optional_saveable_file_format ? castAndEscape(as_optional_saveable_file_format) : null;
-    const valueForScriptAs = castedAs && typeof castedAs === 'string' && !castedAs.startsWith('{') && !castedAs.startsWith('date') ? `"${castedAs.replace(/"/g, "'")}"` : castedAs;
-
-    // Helper function to build properties record from individual property parameters
-    function buildPropertiesRecord(propertyParams) {
-      const definedProps = propertyParams.filter(p => p.value !== undefined && p.value !== null && p.value !== '');
-      if (definedProps.length === 0) return '';
-      const propStrings = definedProps.map(p => {
-        const castedValue = castAndEscape(p.value, p.type || null);
-        // For strings that got escaped, wrap in quotes and replace inner quotes
-        if (typeof castedValue === 'string' && !castedValue.startsWith('{') && !castedValue.startsWith('date')) {
-          return `${p.prop}:"${castedValue.replace(/"/g, "'")}"`;
-        }
-        // For numbers, booleans, lists, records, dates - no quotes
-        return `${p.prop}:${castedValue}`;
-      });
-      return ` with properties {${propStrings.join(', ')}}`;
-    }
-
-    const script = `
-      tell application "Terminal"
-        tell ${castedDocument}
-          save it${inParam_optional_file ? ' in ' + valueForScriptIn : ''}${as_optional_saveable_file_format ? ' as ' + valueForScriptAs : ''}
-        end tell
-      end tell
-    `;
-
-    const result = await executeAppleScript(script);
-    return {
-      success: result !== "Error",
-      message: result,
-      script: script,
-      document: target_document_required_string,
-      in: inParam_optional_file || null,
-      as: as_optional_saveable_file_format || null
-    };
-  }
-
-  async saveForWindow(target_window_required_string, inParam_optional_file, as_optional_saveable_file_format) {
-    if (!target_window_required_string || typeof target_window_required_string !== "string") {
-      throw new Error("target_window_required_string is required and must be a string");
-    }
-
-    const castedWindow = castAndEscape(target_window_required_string);
-    const castedIn = inParam_optional_file ? castAndEscape(inParam_optional_file) : null;
-    const valueForScriptIn = castedIn && typeof castedIn === 'string' && !castedIn.startsWith('{') && !castedIn.startsWith('date') ? `"${castedIn.replace(/"/g, "'")}"` : castedIn;
-    const castedAs = as_optional_saveable_file_format ? castAndEscape(as_optional_saveable_file_format) : null;
-    const valueForScriptAs = castedAs && typeof castedAs === 'string' && !castedAs.startsWith('{') && !castedAs.startsWith('date') ? `"${castedAs.replace(/"/g, "'")}"` : castedAs;
-
-    // Helper function to build properties record from individual property parameters
-    function buildPropertiesRecord(propertyParams) {
-      const definedProps = propertyParams.filter(p => p.value !== undefined && p.value !== null && p.value !== '');
-      if (definedProps.length === 0) return '';
-      const propStrings = definedProps.map(p => {
-        const castedValue = castAndEscape(p.value, p.type || null);
-        // For strings that got escaped, wrap in quotes and replace inner quotes
-        if (typeof castedValue === 'string' && !castedValue.startsWith('{') && !castedValue.startsWith('date')) {
-          return `${p.prop}:"${castedValue.replace(/"/g, "'")}"`;
-        }
-        // For numbers, booleans, lists, records, dates - no quotes
-        return `${p.prop}:${castedValue}`;
-      });
-      return ` with properties {${propStrings.join(', ')}}`;
-    }
-
-    const script = `
-      tell application "Terminal"
-        tell ${castedWindow}
-          save it${inParam_optional_file ? ' in ' + valueForScriptIn : ''}${as_optional_saveable_file_format ? ' as ' + valueForScriptAs : ''}
-        end tell
-      end tell
-    `;
-
-    const result = await executeAppleScript(script);
-    return {
-      success: result !== "Error",
-      message: result,
-      script: script,
-      window: target_window_required_string,
-      in: inParam_optional_file || null,
-      as: as_optional_saveable_file_format || null
-    };
-  }
-
-  async printFile(direct_parameter_required_list_of_file, with_properties_optional_print_settings, print_dialog_optional_boolean) {
-    if (direct_parameter_required_list_of_file === undefined || direct_parameter_required_list_of_file === null) {
-      throw new Error("direct_parameter_required_list_of_file is required");
-    }
-
-    const castedDirect_parameter = direct_parameter_required_list_of_file ? castAndEscape(direct_parameter_required_list_of_file) : null;
-    const castedWith_properties = with_properties_optional_print_settings ? castAndEscape(with_properties_optional_print_settings) : null;
-    const castedPrint_dialog = print_dialog_optional_boolean ? castAndEscape(print_dialog_optional_boolean) : null;
-
-    const script = `
-      tell application "Terminal"
-        print ${castedDirect_parameter}${with_properties_optional_print_settings ? ' with properties ' + castedWith_properties : ''}${print_dialog_optional_boolean ? ' print dialog ' + castedPrint_dialog : ''}
-      end tell
-    `;
-
-    const result = await executeAppleScript(script);
-    return {
-      success: result !== "Error",
-      message: result,
-      script: script,
-      direct_parameter: direct_parameter_required_list_of_file || null,
-      with_properties: with_properties_optional_print_settings || null,
-      print_dialog: print_dialog_optional_boolean || null
-    };
-  }
-
-  async printForDocument(target_document_required_string, with_properties_optional_print_settings, print_dialog_optional_boolean) {
-    if (!target_document_required_string || typeof target_document_required_string !== "string") {
-      throw new Error("target_document_required_string is required and must be a string");
-    }
-
-    const castedDocument = castAndEscape(target_document_required_string);
-    const castedWith_properties = with_properties_optional_print_settings ? castAndEscape(with_properties_optional_print_settings) : null;
-    const valueForScriptWith_properties = castedWith_properties && typeof castedWith_properties === 'string' && !castedWith_properties.startsWith('{') && !castedWith_properties.startsWith('date') ? `"${castedWith_properties.replace(/"/g, "'")}"` : castedWith_properties;
-    const castedPrint_dialog = print_dialog_optional_boolean ? castAndEscape(print_dialog_optional_boolean) : null;
-    const valueForScriptPrint_dialog = castedPrint_dialog && typeof castedPrint_dialog === 'string' && !castedPrint_dialog.startsWith('{') && !castedPrint_dialog.startsWith('date') ? `"${castedPrint_dialog.replace(/"/g, "'")}"` : castedPrint_dialog;
-
-    // Helper function to build properties record from individual property parameters
-    function buildPropertiesRecord(propertyParams) {
-      const definedProps = propertyParams.filter(p => p.value !== undefined && p.value !== null && p.value !== '');
-      if (definedProps.length === 0) return '';
-      const propStrings = definedProps.map(p => {
-        const castedValue = castAndEscape(p.value, p.type || null);
-        // For strings that got escaped, wrap in quotes and replace inner quotes
-        if (typeof castedValue === 'string' && !castedValue.startsWith('{') && !castedValue.startsWith('date')) {
-          return `${p.prop}:"${castedValue.replace(/"/g, "'")}"`;
-        }
-        // For numbers, booleans, lists, records, dates - no quotes
-        return `${p.prop}:${castedValue}`;
-      });
-      return ` with properties {${propStrings.join(', ')}}`;
-    }
-
-    const script = `
-      tell application "Terminal"
-        tell ${castedDocument}
-          print it${with_properties_optional_print_settings ? ' with properties ' + valueForScriptWith_properties : ''}${print_dialog_optional_boolean ? ' print dialog ' + valueForScriptPrint_dialog : ''}
-        end tell
-      end tell
-    `;
-
-    const result = await executeAppleScript(script);
-    return {
-      success: result !== "Error",
-      message: result,
-      script: script,
-      document: target_document_required_string,
-      with_properties: with_properties_optional_print_settings || null,
-      print_dialog: print_dialog_optional_boolean || null
-    };
-  }
-
-  async printForWindow(target_window_required_string, with_properties_optional_print_settings, print_dialog_optional_boolean) {
-    if (!target_window_required_string || typeof target_window_required_string !== "string") {
-      throw new Error("target_window_required_string is required and must be a string");
-    }
-
-    const castedWindow = castAndEscape(target_window_required_string);
-    const castedWith_properties = with_properties_optional_print_settings ? castAndEscape(with_properties_optional_print_settings) : null;
-    const valueForScriptWith_properties = castedWith_properties && typeof castedWith_properties === 'string' && !castedWith_properties.startsWith('{') && !castedWith_properties.startsWith('date') ? `"${castedWith_properties.replace(/"/g, "'")}"` : castedWith_properties;
-    const castedPrint_dialog = print_dialog_optional_boolean ? castAndEscape(print_dialog_optional_boolean) : null;
-    const valueForScriptPrint_dialog = castedPrint_dialog && typeof castedPrint_dialog === 'string' && !castedPrint_dialog.startsWith('{') && !castedPrint_dialog.startsWith('date') ? `"${castedPrint_dialog.replace(/"/g, "'")}"` : castedPrint_dialog;
-
-    // Helper function to build properties record from individual property parameters
-    function buildPropertiesRecord(propertyParams) {
-      const definedProps = propertyParams.filter(p => p.value !== undefined && p.value !== null && p.value !== '');
-      if (definedProps.length === 0) return '';
-      const propStrings = definedProps.map(p => {
-        const castedValue = castAndEscape(p.value, p.type || null);
-        // For strings that got escaped, wrap in quotes and replace inner quotes
-        if (typeof castedValue === 'string' && !castedValue.startsWith('{') && !castedValue.startsWith('date')) {
-          return `${p.prop}:"${castedValue.replace(/"/g, "'")}"`;
-        }
-        // For numbers, booleans, lists, records, dates - no quotes
-        return `${p.prop}:${castedValue}`;
-      });
-      return ` with properties {${propStrings.join(', ')}}`;
-    }
-
-    const script = `
-      tell application "Terminal"
-        tell ${castedWindow}
-          print it${with_properties_optional_print_settings ? ' with properties ' + valueForScriptWith_properties : ''}${print_dialog_optional_boolean ? ' print dialog ' + valueForScriptPrint_dialog : ''}
-        end tell
-      end tell
-    `;
-
-    const result = await executeAppleScript(script);
-    return {
-      success: result !== "Error",
-      message: result,
-      script: script,
-      window: target_window_required_string,
-      with_properties: with_properties_optional_print_settings || null,
-      print_dialog: print_dialog_optional_boolean || null
-    };
-  }
-
-  async quit(saving_optional_save_options) {
-    const castedSaving = saving_optional_save_options ? castAndEscape(saving_optional_save_options) : null;
-
-    const script = `
-      tell application "Terminal"
-        quit${saving_optional_save_options ? ' saving ' + castedSaving : ''}
-      end tell
-    `;
-
-    const result = await executeAppleScript(script);
-    return {
-      success: result !== "Error",
-      message: result,
-      script: script,
-      saving: saving_optional_save_options || null
-    };
-  }
-
-  async countDocument() {
-
-
-    // Helper function to build properties record from individual property parameters
-    function buildPropertiesRecord(propertyParams) {
-      const definedProps = propertyParams.filter(p => p.value !== undefined && p.value !== null && p.value !== '');
-      if (definedProps.length === 0) return '';
-      const propStrings = definedProps.map(p => {
-        const castedValue = castAndEscape(p.value, p.type || null);
-        // For strings that got escaped, wrap in quotes and replace inner quotes
-        if (typeof castedValue === 'string' && !castedValue.startsWith('{') && !castedValue.startsWith('date')) {
-          return `${p.prop}:"${castedValue.replace(/"/g, "'")}"`;
-        }
-        // For numbers, booleans, lists, records, dates - no quotes
-        return `${p.prop}:${castedValue}`;
-      });
-      return ` with properties {${propStrings.join(', ')}}`;
-    }
-
-    const script = `
-      tell application "Terminal"
-        count each document 
-      end tell
-    `;
-
-    const result = await executeAppleScript(script);
-    return {
-      success: result !== "Error",
-      message: result,
-      script: script
-    };
-  }
-
-  async countTabOfWindow(target_window_required_string) {
-    if (!target_window_required_string || typeof target_window_required_string !== "string") {
-      throw new Error("target_window_required_string is required and must be a string");
-    }
-
-    const castedWindow = castAndEscape(target_window_required_string);
-
-    // Helper function to build properties record from individual property parameters
-    function buildPropertiesRecord(propertyParams) {
-      const definedProps = propertyParams.filter(p => p.value !== undefined && p.value !== null && p.value !== '');
-      if (definedProps.length === 0) return '';
-      const propStrings = definedProps.map(p => {
-        const castedValue = castAndEscape(p.value, p.type || null);
-        // For strings that got escaped, wrap in quotes and replace inner quotes
-        if (typeof castedValue === 'string' && !castedValue.startsWith('{') && !castedValue.startsWith('date')) {
-          return `${p.prop}:"${castedValue.replace(/"/g, "'")}"`;
-        }
-        // For numbers, booleans, lists, records, dates - no quotes
-        return `${p.prop}:${castedValue}`;
-      });
-      return ` with properties {${propStrings.join(', ')}}`;
-    }
-
-    const script = `
-      tell application "Terminal"
-        tell ${castedWindow}
-          count each tab of it 
-        end tell
-      end tell
-    `;
-
-    const result = await executeAppleScript(script);
-    return {
-      success: result !== "Error",
-      message: result,
-      script: script,
-      window: target_window_required_string
-    };
-  }
-
-  async countSettingsSet() {
-
-
-    // Helper function to build properties record from individual property parameters
-    function buildPropertiesRecord(propertyParams) {
-      const definedProps = propertyParams.filter(p => p.value !== undefined && p.value !== null && p.value !== '');
-      if (definedProps.length === 0) return '';
-      const propStrings = definedProps.map(p => {
-        const castedValue = castAndEscape(p.value, p.type || null);
-        // For strings that got escaped, wrap in quotes and replace inner quotes
-        if (typeof castedValue === 'string' && !castedValue.startsWith('{') && !castedValue.startsWith('date')) {
-          return `${p.prop}:"${castedValue.replace(/"/g, "'")}"`;
-        }
-        // For numbers, booleans, lists, records, dates - no quotes
-        return `${p.prop}:${castedValue}`;
-      });
-      return ` with properties {${propStrings.join(', ')}}`;
-    }
-
-    const script = `
-      tell application "Terminal"
-        count each settings set 
-      end tell
-    `;
-
-    const result = await executeAppleScript(script);
-    return {
-      success: result !== "Error",
-      message: result,
-      script: script
-    };
-  }
-
-  async countWindow() {
-
-
-    // Helper function to build properties record from individual property parameters
-    function buildPropertiesRecord(propertyParams) {
-      const definedProps = propertyParams.filter(p => p.value !== undefined && p.value !== null && p.value !== '');
-      if (definedProps.length === 0) return '';
-      const propStrings = definedProps.map(p => {
-        const castedValue = castAndEscape(p.value, p.type || null);
-        // For strings that got escaped, wrap in quotes and replace inner quotes
-        if (typeof castedValue === 'string' && !castedValue.startsWith('{') && !castedValue.startsWith('date')) {
-          return `${p.prop}:"${castedValue.replace(/"/g, "'")}"`;
-        }
-        // For numbers, booleans, lists, records, dates - no quotes
-        return `${p.prop}:${castedValue}`;
-      });
-      return ` with properties {${propStrings.join(', ')}}`;
-    }
-
-    const script = `
-      tell application "Terminal"
-        count each window 
-      end tell
-    `;
-
-    const result = await executeAppleScript(script);
-    return {
-      success: result !== "Error",
-      message: result,
-      script: script
-    };
-  }
-
-  async delete(direct_parameter_required_specifier) {
-    if (direct_parameter_required_specifier === undefined || direct_parameter_required_specifier === null) {
-      throw new Error("direct_parameter_required_specifier is required");
-    }
-
-    const castedDirect_parameter = direct_parameter_required_specifier ? castAndEscape(direct_parameter_required_specifier) : null;
-
-    const script = `
-      tell application "Terminal"
-        delete ${castedDirect_parameter}
-      end tell
-    `;
-
-    const result = await executeAppleScript(script);
-    return {
-      success: result !== "Error",
-      message: result,
-      script: script,
-      direct_parameter: direct_parameter_required_specifier || null
-    };
-  }
-
-  async duplicate(direct_parameter_required_specifier, to_optional_location_specifier, with_properties_optional_record) {
-    if (direct_parameter_required_specifier === undefined || direct_parameter_required_specifier === null) {
-      throw new Error("direct_parameter_required_specifier is required");
-    }
-
-    const castedDirect_parameter = direct_parameter_required_specifier ? castAndEscape(direct_parameter_required_specifier) : null;
-    const castedTo = to_optional_location_specifier ? castAndEscape(to_optional_location_specifier) : null;
-    const castedWith_properties = with_properties_optional_record ? castAndEscape(with_properties_optional_record) : null;
-
-    const script = `
-      tell application "Terminal"
-        duplicate ${castedDirect_parameter}${to_optional_location_specifier ? ' to ' + castedTo : ''}${with_properties_optional_record ? ' with properties ' + castedWith_properties : ''}
-      end tell
-    `;
-
-    const result = await executeAppleScript(script);
-    return {
-      success: result !== "Error",
-      message: result,
-      script: script,
-      direct_parameter: direct_parameter_required_specifier || null,
-      to: to_optional_location_specifier || null,
-      with_properties: with_properties_optional_record || null
-    };
-  }
-
-  async exists(direct_parameter_required_any) {
-    if (direct_parameter_required_any === undefined || direct_parameter_required_any === null) {
-      throw new Error("direct_parameter_required_any is required");
-    }
-
-    const castedDirect_parameter = direct_parameter_required_any ? castAndEscape(direct_parameter_required_any) : null;
-
-    const script = `
-      tell application "Terminal"
-        exists ${castedDirect_parameter}
-      end tell
-    `;
-
-    const result = await executeAppleScript(script);
-    return {
-      success: result !== "Error",
-      message: result,
-      script: script,
-      direct_parameter: direct_parameter_required_any || null
-    };
-  }
-
-  async makeDocument(at_optional_location_specifier, with_data_optional_any) {
-
-    const castedAt = at_optional_location_specifier ? castAndEscape(at_optional_location_specifier) : null;
-    const valueForScriptAt = castedAt && typeof castedAt === 'string' && !castedAt.startsWith('{') && !castedAt.startsWith('date') ? `"${castedAt.replace(/"/g, "'")}"` : castedAt;
-    const castedWith_data = with_data_optional_any ? castAndEscape(with_data_optional_any) : null;
-    const valueForScriptWith_data = castedWith_data && typeof castedWith_data === 'string' && !castedWith_data.startsWith('{') && !castedWith_data.startsWith('date') ? `"${castedWith_data.replace(/"/g, "'")}"` : castedWith_data;
-
-    // Helper function to build properties record from individual property parameters
-    function buildPropertiesRecord(propertyParams) {
-      const definedProps = propertyParams.filter(p => p.value !== undefined && p.value !== null && p.value !== '');
-      if (definedProps.length === 0) return '';
-      const propStrings = definedProps.map(p => {
-        const castedValue = castAndEscape(p.value, p.type || null);
-        // For strings that got escaped, wrap in quotes and replace inner quotes
-        if (typeof castedValue === 'string' && !castedValue.startsWith('{') && !castedValue.startsWith('date')) {
-          return `${p.prop}:"${castedValue.replace(/"/g, "'")}"`;
-        }
-        // For numbers, booleans, lists, records, dates - no quotes
-        return `${p.prop}:${castedValue}`;
-      });
-      return ` with properties {${propStrings.join(', ')}}`;
-    }
-
-    const script = `
-      tell application "Terminal"
-        make new document ${at_optional_location_specifier ? ' at ' + valueForScriptAt : ''}${with_data_optional_any ? ' with data ' + valueForScriptWith_data : ''}
-      end tell
-    `;
-
-    const result = await executeAppleScript(script);
-    return {
-      success: result !== "Error",
-      message: result,
-      script: script,
-      at: at_optional_location_specifier || null,
-      with_data: with_data_optional_any || null
-    };
-  }
-
-  async makeTabOfWindow(at_required_location_specifier_window, with_data_optional_any, with_properties_optional_text_font_name, with_properties_optional_color_cursor_color, with_properties_optional_boolean_title_displays_custom_title, with_properties_optional_text_custom_title, with_properties_optional_color_background_color, with_properties_optional_color_bold_text_color, with_properties_optional_boolean_title_displays_file_name, with_properties_optional_boolean_title_displays_device_name, with_properties_optional_integer_number_of_columns, with_properties_optional_integer_number_of_rows, with_properties_optional_boolean_title_displays_shell_path, with_properties_optional_color_normal_text_color, with_properties_optional_missing_value_clean_commands, with_properties_optional_boolean_selected, with_properties_optional_integer_font_size, with_properties_optional_boolean_font_antialiasing, with_properties_optional_settings_set_current_settings, with_properties_optional_boolean_title_displays_window_size) {
-    if (!at_required_location_specifier_window || typeof at_required_location_specifier_window !== "string") {
-      throw new Error("at_required_location_specifier_window is required and must be a string");
-    }
-
-    const castedWindow = castAndEscape(at_required_location_specifier_window);
-    const castedWith_data = with_data_optional_any ? castAndEscape(with_data_optional_any) : null;
-    const valueForScriptWith_data = castedWith_data && typeof castedWith_data === 'string' && !castedWith_data.startsWith('{') && !castedWith_data.startsWith('date') ? `"${castedWith_data.replace(/"/g, "'")}"` : castedWith_data;
-    const castedWith_properties_optional_text_font_name = with_properties_optional_text_font_name ? castAndEscape(with_properties_optional_text_font_name) : null;
-    const castedWith_properties_optional_color_cursor_color = with_properties_optional_color_cursor_color ? castAndEscape(with_properties_optional_color_cursor_color) : null;
-    const castedWith_properties_optional_boolean_title_displays_custom_title = with_properties_optional_boolean_title_displays_custom_title ? castAndEscape(with_properties_optional_boolean_title_displays_custom_title) : null;
-    const castedWith_properties_optional_text_custom_title = with_properties_optional_text_custom_title ? castAndEscape(with_properties_optional_text_custom_title) : null;
-    const castedWith_properties_optional_color_background_color = with_properties_optional_color_background_color ? castAndEscape(with_properties_optional_color_background_color) : null;
-    const castedWith_properties_optional_color_bold_text_color = with_properties_optional_color_bold_text_color ? castAndEscape(with_properties_optional_color_bold_text_color) : null;
-    const castedWith_properties_optional_boolean_title_displays_file_name = with_properties_optional_boolean_title_displays_file_name ? castAndEscape(with_properties_optional_boolean_title_displays_file_name) : null;
-    const castedWith_properties_optional_boolean_title_displays_device_name = with_properties_optional_boolean_title_displays_device_name ? castAndEscape(with_properties_optional_boolean_title_displays_device_name) : null;
-    const castedWith_properties_optional_integer_number_of_columns = with_properties_optional_integer_number_of_columns ? castAndEscape(with_properties_optional_integer_number_of_columns) : null;
-    const castedWith_properties_optional_integer_number_of_rows = with_properties_optional_integer_number_of_rows ? castAndEscape(with_properties_optional_integer_number_of_rows) : null;
-    const castedWith_properties_optional_boolean_title_displays_shell_path = with_properties_optional_boolean_title_displays_shell_path ? castAndEscape(with_properties_optional_boolean_title_displays_shell_path) : null;
-    const castedWith_properties_optional_color_normal_text_color = with_properties_optional_color_normal_text_color ? castAndEscape(with_properties_optional_color_normal_text_color) : null;
-    const castedWith_properties_optional_missing_value_clean_commands = with_properties_optional_missing_value_clean_commands ? castAndEscape(with_properties_optional_missing_value_clean_commands) : null;
-    const castedWith_properties_optional_boolean_selected = with_properties_optional_boolean_selected ? castAndEscape(with_properties_optional_boolean_selected) : null;
-    const castedWith_properties_optional_integer_font_size = with_properties_optional_integer_font_size ? castAndEscape(with_properties_optional_integer_font_size) : null;
-    const castedWith_properties_optional_boolean_font_antialiasing = with_properties_optional_boolean_font_antialiasing ? castAndEscape(with_properties_optional_boolean_font_antialiasing) : null;
-    const castedWith_properties_optional_settings_set_current_settings = with_properties_optional_settings_set_current_settings ? castAndEscape(with_properties_optional_settings_set_current_settings) : null;
-    const castedWith_properties_optional_boolean_title_displays_window_size = with_properties_optional_boolean_title_displays_window_size ? castAndEscape(with_properties_optional_boolean_title_displays_window_size) : null;
-
-    // Helper function to build properties record from individual property parameters
-    function buildPropertiesRecord(propertyParams) {
-      const definedProps = propertyParams.filter(p => p.value !== undefined && p.value !== null && p.value !== '');
-      if (definedProps.length === 0) return '';
-      const propStrings = definedProps.map(p => {
-        const castedValue = castAndEscape(p.value, p.type || null);
-        // For strings that got escaped, wrap in quotes and replace inner quotes
-        if (typeof castedValue === 'string' && !castedValue.startsWith('{') && !castedValue.startsWith('date')) {
-          return `${p.prop}:"${castedValue.replace(/"/g, "'")}"`;
-        }
-        // For numbers, booleans, lists, records, dates - no quotes
-        return `${p.prop}:${castedValue}`;
-      });
-      return ` with properties {${propStrings.join(', ')}}`;
-    }
-
-    const script = `
-      tell application "Terminal"
-        tell ${castedWindow}
-          make new tab at it ${with_data_optional_any ? ' with data ' + valueForScriptWith_data : ''}${buildPropertiesRecord([{param: 'with_properties_optional_text_font_name', prop: 'font name', value: with_properties_optional_text_font_name, type: 'text'}, {param: 'with_properties_optional_color_cursor_color', prop: 'cursor color', value: with_properties_optional_color_cursor_color, type: 'color'}, {param: 'with_properties_optional_boolean_title_displays_custom_title', prop: 'title displays custom title', value: with_properties_optional_boolean_title_displays_custom_title, type: 'boolean'}, {param: 'with_properties_optional_text_custom_title', prop: 'custom title', value: with_properties_optional_text_custom_title, type: 'text'}, {param: 'with_properties_optional_color_background_color', prop: 'background color', value: with_properties_optional_color_background_color, type: 'color'}, {param: 'with_properties_optional_color_bold_text_color', prop: 'bold text color', value: with_properties_optional_color_bold_text_color, type: 'color'}, {param: 'with_properties_optional_boolean_title_displays_file_name', prop: 'title displays file name', value: with_properties_optional_boolean_title_displays_file_name, type: 'boolean'}, {param: 'with_properties_optional_boolean_title_displays_device_name', prop: 'title displays device name', value: with_properties_optional_boolean_title_displays_device_name, type: 'boolean'}, {param: 'with_properties_optional_integer_number_of_columns', prop: 'number of columns', value: with_properties_optional_integer_number_of_columns, type: 'integer'}, {param: 'with_properties_optional_integer_number_of_rows', prop: 'number of rows', value: with_properties_optional_integer_number_of_rows, type: 'integer'}, {param: 'with_properties_optional_boolean_title_displays_shell_path', prop: 'title displays shell path', value: with_properties_optional_boolean_title_displays_shell_path, type: 'boolean'}, {param: 'with_properties_optional_color_normal_text_color', prop: 'normal text color', value: with_properties_optional_color_normal_text_color, type: 'color'}, {param: 'with_properties_optional_missing_value_clean_commands', prop: 'clean commands', value: with_properties_optional_missing_value_clean_commands, type: 'missing value'}, {param: 'with_properties_optional_boolean_selected', prop: 'selected', value: with_properties_optional_boolean_selected, type: 'boolean'}, {param: 'with_properties_optional_integer_font_size', prop: 'font size', value: with_properties_optional_integer_font_size, type: 'integer'}, {param: 'with_properties_optional_boolean_font_antialiasing', prop: 'font antialiasing', value: with_properties_optional_boolean_font_antialiasing, type: 'boolean'}, {param: 'with_properties_optional_settings_set_current_settings', prop: 'current settings', value: with_properties_optional_settings_set_current_settings, type: 'settings set'}, {param: 'with_properties_optional_boolean_title_displays_window_size', prop: 'title displays window size', value: with_properties_optional_boolean_title_displays_window_size, type: 'boolean'}])}
-        end tell
-      end tell
-    `;
-
-    const result = await executeAppleScript(script);
-    return {
-      success: result !== "Error",
-      message: result,
-      script: script,
-      window: at_required_location_specifier_window,
-      with_data: with_data_optional_any || null,
-      font_name: with_properties_optional_text_font_name || null,
-      cursor_color: with_properties_optional_color_cursor_color || null,
-      title_displays_custom_title: with_properties_optional_boolean_title_displays_custom_title || null,
-      custom_title: with_properties_optional_text_custom_title || null,
-      background_color: with_properties_optional_color_background_color || null,
-      bold_text_color: with_properties_optional_color_bold_text_color || null,
-      title_displays_file_name: with_properties_optional_boolean_title_displays_file_name || null,
-      title_displays_device_name: with_properties_optional_boolean_title_displays_device_name || null,
-      number_of_columns: with_properties_optional_integer_number_of_columns || null,
-      number_of_rows: with_properties_optional_integer_number_of_rows || null,
-      title_displays_shell_path: with_properties_optional_boolean_title_displays_shell_path || null,
-      normal_text_color: with_properties_optional_color_normal_text_color || null,
-      clean_commands: with_properties_optional_missing_value_clean_commands || null,
-      selected: with_properties_optional_boolean_selected || null,
-      font_size: with_properties_optional_integer_font_size || null,
-      font_antialiasing: with_properties_optional_boolean_font_antialiasing || null,
-      current_settings: with_properties_optional_settings_set_current_settings || null,
-      title_displays_window_size: with_properties_optional_boolean_title_displays_window_size || null
-    };
-  }
-
-  async makeSettingsSet(at_optional_location_specifier, with_data_optional_any, with_properties_optional_color_bold_text_color, with_properties_optional_integer_number_of_columns, with_properties_optional_boolean_title_displays_shell_path, with_properties_optional_boolean_title_displays_window_size, with_properties_optional_color_cursor_color, with_properties_optional_boolean_font_antialiasing, with_properties_optional_missing_value_clean_commands, with_properties_optional_color_background_color, with_properties_optional_text_font_name, with_properties_optional_integer_font_size, with_properties_optional_boolean_title_displays_settings_name, with_properties_optional_integer_number_of_rows, with_properties_optional_boolean_title_displays_custom_title, with_properties_optional_text_custom_title, with_properties_optional_boolean_title_displays_device_name, with_properties_optional_color_normal_text_color, with_properties_optional_text_name) {
-
-    const castedAt = at_optional_location_specifier ? castAndEscape(at_optional_location_specifier) : null;
-    const valueForScriptAt = castedAt && typeof castedAt === 'string' && !castedAt.startsWith('{') && !castedAt.startsWith('date') ? `"${castedAt.replace(/"/g, "'")}"` : castedAt;
-    const castedWith_data = with_data_optional_any ? castAndEscape(with_data_optional_any) : null;
-    const valueForScriptWith_data = castedWith_data && typeof castedWith_data === 'string' && !castedWith_data.startsWith('{') && !castedWith_data.startsWith('date') ? `"${castedWith_data.replace(/"/g, "'")}"` : castedWith_data;
-    const castedWith_properties_optional_color_bold_text_color = with_properties_optional_color_bold_text_color ? castAndEscape(with_properties_optional_color_bold_text_color) : null;
-    const castedWith_properties_optional_integer_number_of_columns = with_properties_optional_integer_number_of_columns ? castAndEscape(with_properties_optional_integer_number_of_columns) : null;
-    const castedWith_properties_optional_boolean_title_displays_shell_path = with_properties_optional_boolean_title_displays_shell_path ? castAndEscape(with_properties_optional_boolean_title_displays_shell_path) : null;
-    const castedWith_properties_optional_boolean_title_displays_window_size = with_properties_optional_boolean_title_displays_window_size ? castAndEscape(with_properties_optional_boolean_title_displays_window_size) : null;
-    const castedWith_properties_optional_color_cursor_color = with_properties_optional_color_cursor_color ? castAndEscape(with_properties_optional_color_cursor_color) : null;
-    const castedWith_properties_optional_boolean_font_antialiasing = with_properties_optional_boolean_font_antialiasing ? castAndEscape(with_properties_optional_boolean_font_antialiasing) : null;
-    const castedWith_properties_optional_missing_value_clean_commands = with_properties_optional_missing_value_clean_commands ? castAndEscape(with_properties_optional_missing_value_clean_commands) : null;
-    const castedWith_properties_optional_color_background_color = with_properties_optional_color_background_color ? castAndEscape(with_properties_optional_color_background_color) : null;
-    const castedWith_properties_optional_text_font_name = with_properties_optional_text_font_name ? castAndEscape(with_properties_optional_text_font_name) : null;
-    const castedWith_properties_optional_integer_font_size = with_properties_optional_integer_font_size ? castAndEscape(with_properties_optional_integer_font_size) : null;
-    const castedWith_properties_optional_boolean_title_displays_settings_name = with_properties_optional_boolean_title_displays_settings_name ? castAndEscape(with_properties_optional_boolean_title_displays_settings_name) : null;
-    const castedWith_properties_optional_integer_number_of_rows = with_properties_optional_integer_number_of_rows ? castAndEscape(with_properties_optional_integer_number_of_rows) : null;
-    const castedWith_properties_optional_boolean_title_displays_custom_title = with_properties_optional_boolean_title_displays_custom_title ? castAndEscape(with_properties_optional_boolean_title_displays_custom_title) : null;
-    const castedWith_properties_optional_text_custom_title = with_properties_optional_text_custom_title ? castAndEscape(with_properties_optional_text_custom_title) : null;
-    const castedWith_properties_optional_boolean_title_displays_device_name = with_properties_optional_boolean_title_displays_device_name ? castAndEscape(with_properties_optional_boolean_title_displays_device_name) : null;
-    const castedWith_properties_optional_color_normal_text_color = with_properties_optional_color_normal_text_color ? castAndEscape(with_properties_optional_color_normal_text_color) : null;
-    const castedWith_properties_optional_text_name = with_properties_optional_text_name ? castAndEscape(with_properties_optional_text_name) : null;
-
-    // Helper function to build properties record from individual property parameters
-    function buildPropertiesRecord(propertyParams) {
-      const definedProps = propertyParams.filter(p => p.value !== undefined && p.value !== null && p.value !== '');
-      if (definedProps.length === 0) return '';
-      const propStrings = definedProps.map(p => {
-        const castedValue = castAndEscape(p.value, p.type || null);
-        // For strings that got escaped, wrap in quotes and replace inner quotes
-        if (typeof castedValue === 'string' && !castedValue.startsWith('{') && !castedValue.startsWith('date')) {
-          return `${p.prop}:"${castedValue.replace(/"/g, "'")}"`;
-        }
-        // For numbers, booleans, lists, records, dates - no quotes
-        return `${p.prop}:${castedValue}`;
-      });
-      return ` with properties {${propStrings.join(', ')}}`;
-    }
-
-    const script = `
-      tell application "Terminal"
-        make new settings set ${at_optional_location_specifier ? ' at ' + valueForScriptAt : ''}${with_data_optional_any ? ' with data ' + valueForScriptWith_data : ''}${buildPropertiesRecord([{param: 'with_properties_optional_color_bold_text_color', prop: 'bold text color', value: with_properties_optional_color_bold_text_color, type: 'color'}, {param: 'with_properties_optional_integer_number_of_columns', prop: 'number of columns', value: with_properties_optional_integer_number_of_columns, type: 'integer'}, {param: 'with_properties_optional_boolean_title_displays_shell_path', prop: 'title displays shell path', value: with_properties_optional_boolean_title_displays_shell_path, type: 'boolean'}, {param: 'with_properties_optional_boolean_title_displays_window_size', prop: 'title displays window size', value: with_properties_optional_boolean_title_displays_window_size, type: 'boolean'}, {param: 'with_properties_optional_color_cursor_color', prop: 'cursor color', value: with_properties_optional_color_cursor_color, type: 'color'}, {param: 'with_properties_optional_boolean_font_antialiasing', prop: 'font antialiasing', value: with_properties_optional_boolean_font_antialiasing, type: 'boolean'}, {param: 'with_properties_optional_missing_value_clean_commands', prop: 'clean commands', value: with_properties_optional_missing_value_clean_commands, type: 'missing value'}, {param: 'with_properties_optional_color_background_color', prop: 'background color', value: with_properties_optional_color_background_color, type: 'color'}, {param: 'with_properties_optional_text_font_name', prop: 'font name', value: with_properties_optional_text_font_name, type: 'text'}, {param: 'with_properties_optional_integer_font_size', prop: 'font size', value: with_properties_optional_integer_font_size, type: 'integer'}, {param: 'with_properties_optional_boolean_title_displays_settings_name', prop: 'title displays settings name', value: with_properties_optional_boolean_title_displays_settings_name, type: 'boolean'}, {param: 'with_properties_optional_integer_number_of_rows', prop: 'number of rows', value: with_properties_optional_integer_number_of_rows, type: 'integer'}, {param: 'with_properties_optional_boolean_title_displays_custom_title', prop: 'title displays custom title', value: with_properties_optional_boolean_title_displays_custom_title, type: 'boolean'}, {param: 'with_properties_optional_text_custom_title', prop: 'custom title', value: with_properties_optional_text_custom_title, type: 'text'}, {param: 'with_properties_optional_boolean_title_displays_device_name', prop: 'title displays device name', value: with_properties_optional_boolean_title_displays_device_name, type: 'boolean'}, {param: 'with_properties_optional_color_normal_text_color', prop: 'normal text color', value: with_properties_optional_color_normal_text_color, type: 'color'}, {param: 'with_properties_optional_text_name', prop: 'name', value: with_properties_optional_text_name, type: 'text'}])}
-      end tell
-    `;
-
-    const result = await executeAppleScript(script);
-    return {
-      success: result !== "Error",
-      message: result,
-      script: script,
-      at: at_optional_location_specifier || null,
-      with_data: with_data_optional_any || null,
-      bold_text_color: with_properties_optional_color_bold_text_color || null,
-      number_of_columns: with_properties_optional_integer_number_of_columns || null,
-      title_displays_shell_path: with_properties_optional_boolean_title_displays_shell_path || null,
-      title_displays_window_size: with_properties_optional_boolean_title_displays_window_size || null,
-      cursor_color: with_properties_optional_color_cursor_color || null,
-      font_antialiasing: with_properties_optional_boolean_font_antialiasing || null,
-      clean_commands: with_properties_optional_missing_value_clean_commands || null,
-      background_color: with_properties_optional_color_background_color || null,
-      font_name: with_properties_optional_text_font_name || null,
-      font_size: with_properties_optional_integer_font_size || null,
-      title_displays_settings_name: with_properties_optional_boolean_title_displays_settings_name || null,
-      number_of_rows: with_properties_optional_integer_number_of_rows || null,
-      title_displays_custom_title: with_properties_optional_boolean_title_displays_custom_title || null,
-      custom_title: with_properties_optional_text_custom_title || null,
-      title_displays_device_name: with_properties_optional_boolean_title_displays_device_name || null,
-      normal_text_color: with_properties_optional_color_normal_text_color || null,
-      name: with_properties_optional_text_name || null
-    };
-  }
-
-  async makeWindow(at_optional_location_specifier, with_data_optional_any, with_properties_optional_integer_index, with_properties_optional_point_position, with_properties_optional_rectangle_frame, with_properties_optional_boolean_frontmost, with_properties_optional_boolean_zoomed, with_properties_optional_boolean_miniaturized, with_properties_optional_point_size, with_properties_optional_boolean_visible, with_properties_optional_point_origin, with_properties_optional_rectangle_bounds) {
-
-    const castedAt = at_optional_location_specifier ? castAndEscape(at_optional_location_specifier) : null;
-    const valueForScriptAt = castedAt && typeof castedAt === 'string' && !castedAt.startsWith('{') && !castedAt.startsWith('date') ? `"${castedAt.replace(/"/g, "'")}"` : castedAt;
-    const castedWith_data = with_data_optional_any ? castAndEscape(with_data_optional_any) : null;
-    const valueForScriptWith_data = castedWith_data && typeof castedWith_data === 'string' && !castedWith_data.startsWith('{') && !castedWith_data.startsWith('date') ? `"${castedWith_data.replace(/"/g, "'")}"` : castedWith_data;
-    const castedWith_properties_optional_integer_index = with_properties_optional_integer_index ? castAndEscape(with_properties_optional_integer_index) : null;
-    const castedWith_properties_optional_point_position = with_properties_optional_point_position ? castAndEscape(with_properties_optional_point_position) : null;
-    const castedWith_properties_optional_rectangle_frame = with_properties_optional_rectangle_frame ? castAndEscape(with_properties_optional_rectangle_frame) : null;
-    const castedWith_properties_optional_boolean_frontmost = with_properties_optional_boolean_frontmost ? castAndEscape(with_properties_optional_boolean_frontmost) : null;
-    const castedWith_properties_optional_boolean_zoomed = with_properties_optional_boolean_zoomed ? castAndEscape(with_properties_optional_boolean_zoomed) : null;
-    const castedWith_properties_optional_boolean_miniaturized = with_properties_optional_boolean_miniaturized ? castAndEscape(with_properties_optional_boolean_miniaturized) : null;
-    const castedWith_properties_optional_point_size = with_properties_optional_point_size ? castAndEscape(with_properties_optional_point_size) : null;
-    const castedWith_properties_optional_boolean_visible = with_properties_optional_boolean_visible ? castAndEscape(with_properties_optional_boolean_visible) : null;
-    const castedWith_properties_optional_point_origin = with_properties_optional_point_origin ? castAndEscape(with_properties_optional_point_origin) : null;
-    const castedWith_properties_optional_rectangle_bounds = with_properties_optional_rectangle_bounds ? castAndEscape(with_properties_optional_rectangle_bounds) : null;
-
-    // Helper function to build properties record from individual property parameters
-    function buildPropertiesRecord(propertyParams) {
-      const definedProps = propertyParams.filter(p => p.value !== undefined && p.value !== null && p.value !== '');
-      if (definedProps.length === 0) return '';
-      const propStrings = definedProps.map(p => {
-        const castedValue = castAndEscape(p.value, p.type || null);
-        // For strings that got escaped, wrap in quotes and replace inner quotes
-        if (typeof castedValue === 'string' && !castedValue.startsWith('{') && !castedValue.startsWith('date')) {
-          return `${p.prop}:"${castedValue.replace(/"/g, "'")}"`;
-        }
-        // For numbers, booleans, lists, records, dates - no quotes
-        return `${p.prop}:${castedValue}`;
-      });
-      return ` with properties {${propStrings.join(', ')}}`;
-    }
-
-    const script = `
-      tell application "Terminal"
-        make new window ${at_optional_location_specifier ? ' at ' + valueForScriptAt : ''}${with_data_optional_any ? ' with data ' + valueForScriptWith_data : ''}${buildPropertiesRecord([{param: 'with_properties_optional_integer_index', prop: 'index', value: with_properties_optional_integer_index, type: 'integer'}, {param: 'with_properties_optional_point_position', prop: 'position', value: with_properties_optional_point_position, type: 'point'}, {param: 'with_properties_optional_rectangle_frame', prop: 'frame', value: with_properties_optional_rectangle_frame, type: 'rectangle'}, {param: 'with_properties_optional_boolean_frontmost', prop: 'frontmost', value: with_properties_optional_boolean_frontmost, type: 'boolean'}, {param: 'with_properties_optional_boolean_zoomed', prop: 'zoomed', value: with_properties_optional_boolean_zoomed, type: 'boolean'}, {param: 'with_properties_optional_boolean_miniaturized', prop: 'miniaturized', value: with_properties_optional_boolean_miniaturized, type: 'boolean'}, {param: 'with_properties_optional_point_size', prop: 'size', value: with_properties_optional_point_size, type: 'point'}, {param: 'with_properties_optional_boolean_visible', prop: 'visible', value: with_properties_optional_boolean_visible, type: 'boolean'}, {param: 'with_properties_optional_point_origin', prop: 'origin', value: with_properties_optional_point_origin, type: 'point'}, {param: 'with_properties_optional_rectangle_bounds', prop: 'bounds', value: with_properties_optional_rectangle_bounds, type: 'rectangle'}])}
-      end tell
-    `;
-
-    const result = await executeAppleScript(script);
-    return {
-      success: result !== "Error",
-      message: result,
-      script: script,
-      at: at_optional_location_specifier || null,
-      with_data: with_data_optional_any || null,
-      index: with_properties_optional_integer_index || null,
-      position: with_properties_optional_point_position || null,
-      frame: with_properties_optional_rectangle_frame || null,
-      frontmost: with_properties_optional_boolean_frontmost || null,
-      zoomed: with_properties_optional_boolean_zoomed || null,
-      miniaturized: with_properties_optional_boolean_miniaturized || null,
-      size: with_properties_optional_point_size || null,
-      visible: with_properties_optional_boolean_visible || null,
-      origin: with_properties_optional_point_origin || null,
-      bounds: with_properties_optional_rectangle_bounds || null
-    };
-  }
-
-  async move(direct_parameter_required_specifier, to_required_location_specifier) {
-    if (direct_parameter_required_specifier === undefined || direct_parameter_required_specifier === null) {
-      throw new Error("direct_parameter_required_specifier is required");
-    }
-
-    if (to_required_location_specifier === undefined || to_required_location_specifier === null) {
-      throw new Error("to_required_location_specifier is required");
-    }
-
-    const castedDirect_parameter = direct_parameter_required_specifier ? castAndEscape(direct_parameter_required_specifier) : null;
-    const castedTo = to_required_location_specifier ? castAndEscape(to_required_location_specifier) : null;
-
-    const script = `
-      tell application "Terminal"
-        move ${castedDirect_parameter} to ${castedTo}
-      end tell
-    `;
-
-    const result = await executeAppleScript(script);
-    return {
-      success: result !== "Error",
-      message: result,
-      script: script,
-      direct_parameter: direct_parameter_required_specifier || null,
-      to: to_required_location_specifier || null
-    };
-  }
-
-  async getNameOfApplication() {
-    const script = `
-      tell application "Terminal"
-        return name
       end tell
     `;
 
@@ -4738,14 +3335,23 @@ class TerminalMCPServer {
     return {
       success: result !== "Error",
       value: result,
-      script: script
+      script: script,
+      application: target_application_required_string
     };
   }
 
-  async getFrontmostOfApplication() {
+  async getFrontmostOfApplication(target_application_required_string) {
+    if (!target_application_required_string || typeof target_application_required_string !== "string") {
+      throw new Error("target_application_required_string is required and must be a string");
+    }
+
+    const escapedApplication = escapeForAppleScript(target_application_required_string);
+
     const script = `
       tell application "Terminal"
-        return frontmost
+        tell ${escapedApplication}
+          return frontmost of it
+        end tell
       end tell
     `;
 
@@ -4753,14 +3359,23 @@ class TerminalMCPServer {
     return {
       success: result !== "Error",
       value: result,
-      script: script
+      script: script,
+      application: target_application_required_string
     };
   }
 
-  async getVersionOfApplication() {
+  async getVersionOfApplication(target_application_required_string) {
+    if (!target_application_required_string || typeof target_application_required_string !== "string") {
+      throw new Error("target_application_required_string is required and must be a string");
+    }
+
+    const escapedApplication = escapeForAppleScript(target_application_required_string);
+
     const script = `
       tell application "Terminal"
-        return version
+        tell ${escapedApplication}
+          return version of it
+        end tell
       end tell
     `;
 
@@ -4768,7 +3383,8 @@ class TerminalMCPServer {
     return {
       success: result !== "Error",
       value: result,
-      script: script
+      script: script,
+      application: target_application_required_string
     };
   }
 
@@ -6483,10 +5099,18 @@ class TerminalMCPServer {
     };
   }
 
-  async getDefaultSettingsOfApplication() {
+  async getDefaultSettingsOfApplication(target_application_required_string) {
+    if (!target_application_required_string || typeof target_application_required_string !== "string") {
+      throw new Error("target_application_required_string is required and must be a string");
+    }
+
+    const escapedApplication = escapeForAppleScript(target_application_required_string);
+
     const script = `
       tell application "Terminal"
-        return default settings
+        tell ${escapedApplication}
+          return default settings of it
+        end tell
       end tell
     `;
 
@@ -6494,15 +5118,20 @@ class TerminalMCPServer {
     return {
       success: result !== "Error",
       value: result,
-      script: script
+      script: script,
+      application: target_application_required_string
     };
   }
 
-  async setDefaultSettingsOfApplication(value_required_settings_set) {
+  async setDefaultSettingsOfApplication(target_application_required_string, value_required_settings_set) {
+    if (!target_application_required_string || typeof target_application_required_string !== "string") {
+      throw new Error("target_application_required_string is required and must be a string");
+    }
     if (value_required_settings_set === undefined || value_required_settings_set === null) {
       throw new Error("value_required_settings_set is required");
     }
 
+    const castedApplication = castAndEscape(target_application_required_string, 'string');
     const castedValue = castAndEscape(value_required_settings_set, 'settings set');
     // Determine value format for AppleScript
     let valueForScript;
@@ -6511,7 +5140,9 @@ class TerminalMCPServer {
 
     const script = `
       tell application "Terminal"
-        set default settings to ${valueForScript}
+        tell ${castedApplication}
+          set default settings of it to ${valueForScript}
+        end tell
       end tell
     `;
 
@@ -6520,14 +5151,23 @@ class TerminalMCPServer {
       success: result !== "Error",
       message: "Property set successfully",
       value: value_required_settings_set,
-      script: script
+      script: script,
+      application: target_application_required_string
     };
   }
 
-  async getStartupSettingsOfApplication() {
+  async getStartupSettingsOfApplication(target_application_required_string) {
+    if (!target_application_required_string || typeof target_application_required_string !== "string") {
+      throw new Error("target_application_required_string is required and must be a string");
+    }
+
+    const escapedApplication = escapeForAppleScript(target_application_required_string);
+
     const script = `
       tell application "Terminal"
-        return startup settings
+        tell ${escapedApplication}
+          return startup settings of it
+        end tell
       end tell
     `;
 
@@ -6535,15 +5175,20 @@ class TerminalMCPServer {
     return {
       success: result !== "Error",
       value: result,
-      script: script
+      script: script,
+      application: target_application_required_string
     };
   }
 
-  async setStartupSettingsOfApplication(value_required_settings_set) {
+  async setStartupSettingsOfApplication(target_application_required_string, value_required_settings_set) {
+    if (!target_application_required_string || typeof target_application_required_string !== "string") {
+      throw new Error("target_application_required_string is required and must be a string");
+    }
     if (value_required_settings_set === undefined || value_required_settings_set === null) {
       throw new Error("value_required_settings_set is required");
     }
 
+    const castedApplication = castAndEscape(target_application_required_string, 'string');
     const castedValue = castAndEscape(value_required_settings_set, 'settings set');
     // Determine value format for AppleScript
     let valueForScript;
@@ -6552,7 +5197,9 @@ class TerminalMCPServer {
 
     const script = `
       tell application "Terminal"
-        set startup settings to ${valueForScript}
+        tell ${castedApplication}
+          set startup settings of it to ${valueForScript}
+        end tell
       end tell
     `;
 
@@ -6561,7 +5208,8 @@ class TerminalMCPServer {
       success: result !== "Error",
       message: "Property set successfully",
       value: value_required_settings_set,
-      script: script
+      script: script,
+      application: target_application_required_string
     };
   }
 

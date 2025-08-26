@@ -23,95 +23,15 @@
   "license": "MIT",
   "icon": "icon.png",
   "display_name": "Terminal (AppleScript)",
-  "scripts": {
-    "start": "node server/index.js",
-    "build": "npx @anthropic-ai/dxt pack"
-  },
+  "keywords": [
+    "terminal",
+    "applescript",
+    "automation",
+    "hierarchy",
+    "static-data",
+    "class-structure"
+  ],
   "tools": [
-    {
-      "name": "open",
-      "description": "Open a document."
-    },
-    {
-      "name": "close_for_document",
-      "description": "Close a document."
-    },
-    {
-      "name": "close_for_window",
-      "description": "Close a window."
-    },
-    {
-      "name": "save_for_document",
-      "description": "Save a document."
-    },
-    {
-      "name": "save_for_window",
-      "description": "Save a window."
-    },
-    {
-      "name": "print_file",
-      "description": "Print a document. (file input)"
-    },
-    {
-      "name": "print_for_document",
-      "description": "Print a document."
-    },
-    {
-      "name": "print_for_window",
-      "description": "Print a window."
-    },
-    {
-      "name": "quit",
-      "description": "Quit the application."
-    },
-    {
-      "name": "count_document",
-      "description": "Return the number of elements of a particular class within a document."
-    },
-    {
-      "name": "count_tab_of_window",
-      "description": "Return the number of elements of a particular class within a tab of window."
-    },
-    {
-      "name": "count_settings_set",
-      "description": "Return the number of elements of a particular class within a settings set."
-    },
-    {
-      "name": "count_window",
-      "description": "Return the number of elements of a particular class within a window."
-    },
-    {
-      "name": "delete",
-      "description": "Delete an object."
-    },
-    {
-      "name": "duplicate",
-      "description": "Copy an object."
-    },
-    {
-      "name": "exists",
-      "description": "Verify that an object exists."
-    },
-    {
-      "name": "make_document",
-      "description": "Create a new document."
-    },
-    {
-      "name": "make_tab_of_window",
-      "description": "Create a new tab of window."
-    },
-    {
-      "name": "make_settings_set",
-      "description": "Create a new settings set."
-    },
-    {
-      "name": "make_window",
-      "description": "Create a new window."
-    },
-    {
-      "name": "move",
-      "description": "Move an object to a new location."
-    },
     {
       "name": "get_name_of_application",
       "description": "Get The name of the application."
@@ -656,14 +576,6 @@
       "name": "set_font_antialiasing_of_tab_of_window",
       "description": "Set Whether the font used to display the tab’s contents is antialiased."
     }
-  ],
-  "keywords": [
-    "terminal",
-    "applescript",
-    "automation",
-    "hierarchy",
-    "static-data",
-    "class-structure"
   ],
   "compatibility": {
     "platforms": [
